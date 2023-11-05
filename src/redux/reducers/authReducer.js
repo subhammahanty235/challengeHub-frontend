@@ -7,11 +7,28 @@ export const authReducer = createReducer(initialState, {
     },
     GET_OTP_SUCCESS: (state)=>{
         state.loading = false;
-        state.success = true;
+        state.otpsent = true;
+        state.verifiedotp = false
     },
     GET_OTP_FAILED:(state,action)=>{
         state.loading = false;
-        state.success = false;
+        state.otpsent = false;
+        state.error = action.payload
+    },
+    VERIFY_OTP:(state)=>{
+        state.loading = true;
+    },
+    VERIFY_OTP_SUCCESS: (state, action)=>{
+        state.loading = false;
+        state.user = action.payload.user;
+        state.verifiedotp = true;
+        localStorage.setItem("token" , action.payload.token);
+
+    },
+    VERIFY_OTP_FAILED: (state,action) => {
+        state.loading = false;
+        state.verifiedotp = false;
         state.error = action.payload
     }
+
 })
