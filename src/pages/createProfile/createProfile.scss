@@ -1,0 +1,41 @@
+.create_profile_screen {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+
+    // background-color: red;
+    .create_profile_illustration {
+        // background-color: #fff;
+        width: 50vw;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+       
+
+
+        
+    }
+
+    .create_profile_form {
+        
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex-direction: column;
+        width: 50vw;
+        height: 100%;
+        row-gap: 20px;
+
+        input {
+            height: 50px;
+            width: 70%;
+            padding: 0px 10px;
+            font-size: larger;
+        }
+    }
+}
