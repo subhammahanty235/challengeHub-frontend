@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import './createProfile.scss'
+import { useDispatch } from 'react-redux'
+import {createProfile} from '../../redux/actions/userActions'
 import Illustration1 from '../../assets/images/illustration1.svg'
 const CreateProfile = () => {
+    const dispatch = useDispatch();
+
     const [data, setdata] = useState({ name: '', mobileNumber: '', dateofbirth: '', gender: '', profilepic: '' });
 
     const onChangeHandler = (e) => {
@@ -20,7 +24,7 @@ const CreateProfile = () => {
                 <input placeholder='Gender' type="text" name='gender' value={data.gender} onChange={(e) => { onChangeHandler(e) }} />
                 <input placeholder='Profile Pic' type="text" name='profilepic' value={data.profilepic} onChange={(e) => { onChangeHandler(e) }} />
                 <button onClick={() => {
-                    console.log(data)
+                    dispatch(createProfile(data))
                 }}>Save Profile</button>
             </div>
         </div>
