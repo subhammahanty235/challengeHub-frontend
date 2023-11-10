@@ -30,7 +30,6 @@ export const createProfile = (data) => async (dispatch) => {
             newData.profilePic = data.profilePic;
         }
 
-        console.log(newData)
 
         const response = await axios.put('http://localhost:5000/api/user/profile/create',
             {
@@ -44,7 +43,7 @@ export const createProfile = (data) => async (dispatch) => {
             }
         )
 
-        console.log(response)
+       
 
         if (response.data.success === true) {
             dispatch({

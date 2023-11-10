@@ -22,12 +22,14 @@ export const authReducer = createReducer(initialState, {
         state.loading = false;
         state.user = action.payload.user;
         state.verifiedotp = true;
+        state.authenticated = true;
         localStorage.setItem("token" , action.payload.token);
 
     },
     VERIFY_OTP_FAILED: (state,action) => {
         state.loading = false;
         state.verifiedotp = false;
+        state.authenticated = false;
         state.error = action.payload
     }
 
