@@ -34,7 +34,7 @@ export const getOtp = (email) => async(dispatch) => {
 export const verifyOtp = (email , otp) => async(dispatch) => {
     try {
         dispatch({type:"VERIFY_OTP"});
-        const response = await axios.post("http://localhost:5000/api/auth/verifyotp" , 
+        const response = await axios.post("http://localhost:5000/api/auth/verifyotp", 
         {
             email:email,
             otp:otp
@@ -45,6 +45,8 @@ export const verifyOtp = (email , otp) => async(dispatch) => {
             },
         }
         )
+
+        console.log(response.data)
 
         if(response.data.success === true){
             dispatch({

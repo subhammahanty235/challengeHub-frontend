@@ -1,14 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './login.scss'
 import { getOtp, verifyOtp } from '../../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import OtpInput from 'react-otp-input';
 import LoginScreenIllustration from '../../assets/images/login-illustration.svg'
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
-  const { otpsent, verifiedotp, user } = useSelector((state) => state.auth)
+  const { otpsent, verifiedotp, user  , authenticated} = useSelector((state) => state.auth)
   const [email, setemail] = useState("")
   const [otp, setOtp] = useState()
+  const navigate = useNavigate()
+
+  useEffect(()=>{
+    if(verifiedotp === true && authenticated === true){
+      if(user.profileCreated === false){
+        navigate('/createprofile')
+      }else{
+        navigate('/')
+      }
+    }
+  },[authenticated ,user , verifiedotp ])
+
+
 
   return (
     <div className='login_screen'>
