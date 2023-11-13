@@ -1,0 +1,60 @@
+.challenge_box{
+    width: 98%;
+    min-height: 150px;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-radius: 7px;
+    position: relative;
+    // padding: 0px 20px;
+    
+
+    .box_heading{
+        padding: 0px 20px;
+        padding-top: 5px;
+        margin: 0;
+        font-size: large;
+        font-weight: 500;
+        text-align: left;
+    }
+    .box_description{
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        padding: 0px 20px;
+        text-align: left;
+    }
+    .duration_and_button{
+
+        padding: 0px 20px;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .duration{
+            font-size: 13px;
+        }
+        .learn_more{
+            padding: 5px 20px;
+            text-align: center;
+            font-size: 14px;
+            background-color: #535bf2;
+            
+            
+
+        }
+    }
+
+    .tptbox{
+        position: absolute;
+        top: -11.5px;
+        background-color: #fff;
+        color: #000;
+        border-radius: 10px;
+        padding: 0px 10px;
+        left: 65%;
+        font-size: small;
+    }
+}

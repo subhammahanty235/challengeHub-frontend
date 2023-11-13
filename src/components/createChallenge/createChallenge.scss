@@ -1,0 +1,130 @@
+.createChallenge_form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // background-color: aqua;
+    align-items: flex-start;
+    .heading{
+        font-size: 20px;
+        font-weight: 600;
+        margin-left: 10%;
+        padding-bottom: 8px;
+        border-bottom: 3px dashed #fff;
+        width: 70%;
+        text-align: left;
+    }
+
+    .main_form{
+        margin-top: 30px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 10%;
+        gap: 15px;
+        input{
+            padding: 10px;
+        }
+        
+
+        .name{
+            width: 70%;
+            display: flex;
+            align-items: flex-start;
+
+            justify-content: space-between;
+            label{
+                text-align: left;
+                width: 15%;
+                
+            }
+            input{
+                padding: 10px;
+                width: 85%;
+            }
+        }
+        .description{
+            width: 70%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            label{
+                text-align: left;
+                width: 15%;
+            }
+            textarea{
+                width: 82.3%;
+                min-width: 82.3%;
+                max-width: 82.5%;
+                padding: 10px;
+            }
+        }
+        
+        .days_and_visibility{
+            width: 70%;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: space-between;
+
+            .days{
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                label{
+                    width: 30%;
+                    text-align: left;
+                    // background-color: bisque;
+                }
+                input{
+                    width: 68.5%;
+                }
+            }
+            .visibility{
+                gap: 10px;
+                width: 50%;
+                display: flex;
+                align-items: center;
+                justify-content:flex-end ;
+
+                
+               
+            }
+        }
+
+    }
+    .detailed{
+        width: 70%;
+        margin-left: 10%;
+        text-align: left;
+        margin-top: 20px;
+        p{
+            font-size: 13px;
+            color: gray;
+        }
+    }
+    .buttons{
+        width: 70%;
+        margin-left: 10%;
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // background-color: #fff;
+
+        .clear{
+            width: 100px;
+            background-color: transparent;
+            border: 2px solid rgb(209, 60, 60);
+            padding: 5px 3px;
+            color:rgb(209, 60, 60) ;
+        }
+        .save{
+            width: 100px;
+            background-color:#535bf2 ;
+            color: #fff;
+            padding: 7px 5px;
+        }
+    }
+}
