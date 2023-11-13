@@ -72,7 +72,7 @@ const CreateChallenge = () => {
     }
 
 
-    const [challengeData, setChallengeData] = useState({ name: '', description: '', noOfDays: '' ,visibility: selectedVisibility  });
+    const [challengeData, setChallengeData] = useState({ name: '', description: '', noOfdays: '' ,visibility: selectedVisibility  });
 
     const onChange = (e) => {
         setChallengeData({ ...challengeData, [e.target.name]: e.target.value })
@@ -96,7 +96,7 @@ const CreateChallenge = () => {
                 <div className="days_and_visibility">
                     <div className="days">
                         <label htmlFor="">Days*</label>
-                        <input placeholder='Write the Duration' type="number" min={1} name='noOfDays' value={challengeData.noOfDays} onChange={(e) => { onChange(e) }} />
+                        <input placeholder='Write the Duration' type="number" min={1} name='noOfDays' value={challengeData.noOfdays} onChange={(e) => { onChange(e) }} />
                     </div>
                     <div className="visibility">
                         <label htmlFor="Visibility">Visibility  </label>

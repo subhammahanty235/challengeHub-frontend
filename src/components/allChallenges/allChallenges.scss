@@ -1,4 +1,4 @@
-.all_challenges{
+.all_challenges {
     width: 100%;
     height: 100%;
     // background-color: aquamarine;
@@ -8,18 +8,65 @@
     align-items: flex-start;
     overflow: hidden;
 
+    .heading_and_search {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-    .heading{
-        font-size: 20px;
-        font-weight: 600;
-        // margin-left: 10%;
-        padding-bottom: 8px;
-        // border-bottom: 3px dashed #fff;
-        width: 70%;
-        text-align: left;
+        .heading {
+            font-size: 20px;
+            font-weight: 600;
+            // margin-left: 10%;
+            padding-bottom: 8px;
+            // border-bottom: 3px dashed #fff;
+            width: 70%;
+            text-align: left;
+        }
+
+        .searchButton {
+            background-color: #fff;
+            color: #535bf2;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding-left: 3px;
+            img {
+                height: 16px;
+                // padding-right: 20px;
+                text-align: center;
+                // margin-right: 20px;
+                background-color: #fff;
+                width: 15px;
+                padding: 6px 7px;
+
+                border-radius: 50%;
+                cursor: pointer;
+                color: #535bf2;
+
+            }
+        }
+
+
     }
 
-    .challenges{
+    .search_input {
+        // max-height: 30px;
+        width: 96%;
+
+        display: none;
+        transform: all 2s;
+        padding: 9px 5px;
+    }
+
+    .open_input {
+
+        display: block;
+    }
+
+
+    .challenges {
         margin-top: 20px;
         width: 100%;
         // height: 100%;
@@ -31,7 +78,7 @@
         scroll-behavior: smooth;
         // overflow: scroll;
 
-        &::-webkit-scrollbar{
+        &::-webkit-scrollbar {
             display: none;
         }
     }
