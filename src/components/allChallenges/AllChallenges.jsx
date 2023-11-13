@@ -9,7 +9,7 @@ const AllChallenges = () => {
 
     useEffect(()=>{
         dispatch(getAllChallenges())
-    },[dispatch , challenges])
+    },[dispatch])
   return (
     <div className="all_challenges">
         <p className="heading">More For You</p>
@@ -17,7 +17,7 @@ const AllChallenges = () => {
         <div className="challenges">
             {
                 challenges?.map((item)=> {
-                    return <ChallengeBox/>
+                    return <ChallengeBox item={item}/>
                 })
             }
         </div>
