@@ -1,0 +1,17 @@
+.homepage{
+    width: 100%;
+    height: calc(100vh - 52px);
+    display: flex;
+    overflow: hidden;
+
+    .section1{
+        width: 70vw;
+        height: 100%;
+        // border: 1px solid #fff;
+        
+    }
+    .section2{
+        width: 30vw;
+        height: 100%;
+    }
+}

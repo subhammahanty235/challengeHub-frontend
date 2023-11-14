@@ -1,0 +1,123 @@
+.challenge_dashboard{
+    border-right:1px solid rgba(194, 224, 255, 0.08);
+    height: 100%;
+
+    .challenge_datails{
+        margin-top: 30px;
+        width: 90%;
+        background-color: rgba(255, 255, 255, 0.87);
+        height: 44%;
+        border-radius: 20px;
+        padding: 10px 20px;
+
+
+        .challenge_name{
+            text-align: left;
+            color: #302e2e;
+            font-size: larger;
+            font-weight: 600;
+            margin: 0;
+           opacity: 0.9;
+        }
+        .challenge_desc{
+            text-align: left;
+            color:#302e2e ;
+            opacity: 0.7;
+            margin: 0;
+            margin-top: 10px;
+        }
+
+        .dates{
+            color: #302e2e;
+            display: flex;
+            padding: 0;
+            margin: 0;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .currentPerformance{
+            text-align: left;
+            color: #302e2e;
+            
+            p{
+                margin: 0;
+                font-size: large;
+                font-weight: 500;
+
+                span{
+                    color: #535bf2;
+                    font-weight: 700;
+                }
+            }
+        }
+        .score_warning{
+            
+            p{
+                color: grey;
+                font-size: smaller;
+                text-align: left;
+                margin: 0;
+                padding: 0;
+            }
+        }
+        .mark_today{
+            background-color: #535bf2;
+            opacity: 0.95;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 0px 10px;
+            border-radius: 20px;
+            margin-top: 25px;
+            p{
+                color: #302e2e;
+                font-size: large;
+                font-weight: 500;
+
+            }
+
+        }
+    }
+
+    .day_wise_map{
+        width: 90%;
+        .map_heading{
+            text-align: left;
+            font-size: larger;
+            font-weight: 600;
+        }
+        .today_status{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                margin: 0;
+            }
+        }
+
+        .maps{
+            margin-top: 20px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+       
+
+            .map{
+                height: 30px;
+                width: 30px;
+                background-color: #1a1a1a;
+
+                
+            }
+            .completed{
+                background-color: #535bf2;
+            }
+        }
+
+
+    }
+    
+}
