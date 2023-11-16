@@ -1,8 +1,23 @@
-.challenge_box {
+.my_challenge_box {
     margin-left: 15px;
+    // margin-top: 10px;
     width: 85%;
-    padding: 20px;
-    min-height:100px ;
+    min-height: 130px;
+    border: 2px solid #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-radius: 7px;
+    position: relative;
+    padding:10px 20px;
+
+    &:hover{
+        border: 2px solid #535bf2;
+
+        
+
+    }
     &.active{
         border: 2px solid #535bf2;
     }
@@ -10,6 +25,19 @@
         margin: 0;
         padding: 0;
     }
+    .box_heading{
+        // padding: 0px 20px;
+        padding-top: 5px;
+        margin: 0;
+        font-size: large;
+        font-weight: 500;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+       
+    }
+    
 
     .box_desc {
         font-size: 14px;
@@ -21,6 +49,7 @@
         text-align: left;
     }
     .startdate_tenure{
+        // margin-top: 5px;
         width: 100%;
         display: flex;
         align-items: center;

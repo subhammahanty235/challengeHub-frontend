@@ -16,7 +16,7 @@
         border-radius: 5px;
     }
    }
-
+   
    .menus{
     display: flex;
     align-items: center;
@@ -32,6 +32,10 @@
 
         &:hover{
             color: #5e65ea;
+        }
+        &.active{
+
+            color:#5e65ea ;
         }
     }
     img{
