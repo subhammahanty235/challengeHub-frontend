@@ -1,7 +1,9 @@
 import React from 'react'
 import './challengeDashboard.scss'
+import { useSelector } from 'react-redux'
 
 const ChallengeDashboard = () => {
+    const {currentch} = useSelector((state) => state.challenge)
 
     const sampleData = [
         {
@@ -174,12 +176,12 @@ const ChallengeDashboard = () => {
   return (
     <div className="challenge_dashboard">
         <div className="challenge_datails">
-            <p className="challenge_name">DSA/AI Mastering Challenge</p>
-            <p className="challenge_desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis consequuntur illo fugiat sapiente tempore numquam tempora ab doloribus sint odio. Ab ea possimus laboriosam laudantium consectetur harum molestias, quaerat maxime obcaecati repellat, adipisci ipsam eligendi?</p>
+            <p className="challenge_name">{currentch?.name}</p>
+            <p className="challenge_desc">{currentch?.description}</p>
             
             <div className="dates">
-                <p className="start_date">Started on: 7th December 2023</p>
-                <p className="expectedEnd">Expected Deadline: 7th January 2023</p>
+                <p className="start_date">Started on: {currentch?.startDate}</p>
+                <p className="expectedEnd">Expected Deadline: {currentch?.expectedEnd}</p>
             </div>
 
             <div className="currentPerformance">
@@ -209,9 +211,9 @@ const ChallengeDashboard = () => {
             <div className="maps">
                 {
                    Array.from({length:75} , (_, index) => {
-                    const dayyy = sampleData.find((data) => data.dayNumber === index);
+                    const dayyy = currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index+1);
                     if(!dayyy){
-                        return <div className={`map`}>
+                        return <div className={`map`}> 
                     </div>
                     }else{
                         return <div className={`map ${dayyy.status === true ? 'completed' :''}`}>

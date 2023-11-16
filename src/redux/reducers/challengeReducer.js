@@ -24,5 +24,23 @@ export const challengeReducer = createReducer(initialState , {
     FETCH_ALL_CHALLENGES_FAILED: (state , action) => {
         state.loading = false;
         state.error = action.payload
+    },
+    FETCH_MY_CHALLENGES: (state) => {
+        state.loading = true;
+    },
+    FETCH_MY_CHALLENGES_SUCCESS: (state,action) => {
+        state.loading = false;
+        state.mychallenges = action.payload.challenges;
+    },
+    FETCH_MY_CHALLENGES_FAILED: (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+    },
+
+
+    // temp
+    SET_CURRENT_OPENED_CHALLENGE: (state , action)=>{
+        state.currentch = action.payload;
     }
+
 })

@@ -68,3 +68,37 @@ export const getAllChallenges = () => async(dispatch) =>{
         })
     }
 }
+
+export const getMyChallenges = () => async(dispatch) =>{
+    try {
+        dispatch({type:"FETCH_MY_CHALLENGES"})
+        const response = await axios.get('http://localhost:5000/api/challenge/getmyChallenges/6547c98e4f4e1b97039fde71',
+        {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+
+        if(response.data.success === true){
+            dispatch({
+                type:"FETCH_MY_CHALLENGES_SUCCESS",
+                payload:response.data
+            })
+            dispatch({
+                type:"SET_CURRENT_OPENED_CHALLENGE",
+                payload: response.data.challenges[0]
+            })
+        }else{
+            dispatch({
+                type:"FETCH_MY_CHALLENGES_FAILED",
+                payload:"Some Error Occured"
+            })
+        }
+    } catch (error) {
+        dispatch({
+            type:"FETCH_MY_CHALLENGES_FAILED",
+            payload:error.message
+        })
+    }
+}
+
