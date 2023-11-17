@@ -60,10 +60,11 @@ const Login = () => {
           :
           <>
             <div className="login_page_form_components">
-              <p className="login_page_header">Enter Your emailid</p>
+              <p className="login_page_header">Are U Ready? <br /><span>TO CHALLENGE YOURSELF</span></p>
+              {/* <p className="login_page_subheader">A LIST OF CHALLENGES FOR YOU</p> */}
               <div className="main_login_form">
 
-                <input type="text" className="email_input" value={email} onChange={(e)=>{setemail(e.target.value)}} />
+                <input placeholder='Enter email' type="text" className="email_input" value={email} onChange={(e)=>{setemail(e.target.value)}} />
 
                 <button className='get_otp_button' onClick={()=>{dispatch(getOtp(email))}}>Get OTP</button>
               </div>

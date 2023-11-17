@@ -102,3 +102,34 @@ export const getMyChallenges = () => async(dispatch) =>{
     }
 }
 
+export const markDayAsCompleted = (challengeId)=> async (dispatch) => {
+    try {
+        dispatch({type:"MARK_DAY_AS_COMPLETED"})
+
+        const response = await axios.post(`http://localhost:5000/api/challenge/markasdone/${challengeId}` ,{}, {
+            headers: {
+                "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
+            }
+        })
+        
+        if(response.data.success === true){
+            dispatch({
+                type:"MARK_DAY_AS_COMPLETED_SUCCESS"
+            })
+            getMyChallenges()
+        }else{
+            dispatch({
+                type:"MARK_DAY_AS_COMPLETED_FAILED",
+                payload:"Some Error Occured"
+            })
+        }
+        
+    } catch (error) {
+        dispatch({
+            type:"MARK_DAY_AS_COMPLETED_FAILED",
+            payload:error.message
+        })
+    }
+}
+

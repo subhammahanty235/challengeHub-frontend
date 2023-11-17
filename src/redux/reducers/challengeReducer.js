@@ -36,6 +36,18 @@ export const challengeReducer = createReducer(initialState , {
         state.loading = false;
         state.error = action.payload;
     },
+    MARK_DAY_AS_COMPLETED: (state) => {
+        state.loading = true;
+    },
+    MARK_DAY_AS_COMPLETED_SUCCESS: (state) => {
+        state.loading = false;
+        state.marked = true;
+    },
+    MARK_DAY_AS_COMPLETED_FAILED: (state, action) => {
+        state.loading = false;
+        state.marked = false;
+        state.error = action.payload
+    },
 
 
     // temp
