@@ -114,10 +114,12 @@ export const markDayAsCompleted = (challengeId)=> async (dispatch) => {
         })
         
         if(response.data.success === true){
+            
             dispatch({
-                type:"MARK_DAY_AS_COMPLETED_SUCCESS"
+                type:"MARK_DAY_AS_COMPLETED_SUCCESS",
+                challengeID:challengeId,
+                payload:response.data
             })
-            getMyChallenges()
         }else{
             dispatch({
                 type:"MARK_DAY_AS_COMPLETED_FAILED",

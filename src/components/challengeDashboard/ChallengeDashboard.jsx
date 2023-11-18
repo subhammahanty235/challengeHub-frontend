@@ -1,18 +1,21 @@
 import React from 'react'
 import './challengeDashboard.scss'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { dateFormattingHelper } from '../../utils/dateformatter'
 import { getDayfromStarted } from '../../utils/getDayfromStarted'
-import {markDayAsCompleted} from '../../redux/actions/challengeActions'
-
+import { markDayAsCompleted } from '../../redux/actions/challengeActions'
+import Dialog from '@mui/material/Dialog';
+import LoadingAnimation from '../../assets/images/loading.svg'
+import LoadingWhite from '../../assets/images/loading-white.svg'
 const ChallengeDashboard = () => {
-    const { loading, currentch } = useSelector((state) => state.challenge)
+    const {loading, marking, currentch } = useSelector((state) => state.challenge)
     const dispatch = useDispatch();
+    // const loading = true;
 
     return (
         <>
             {
-                loading === true ? 'Loading ....' :
+                loading === true ? <div className="loading"><img src={LoadingWhite} alt="" /></div> :
                     <div className="challenge_dashboard">
                         <div className="challenge_datails">
                             <div className="name_desc">
@@ -33,14 +36,14 @@ const ChallengeDashboard = () => {
 
                                 {
                                     currentch?.DayWisecompletedOn.some(day => day.dayNumber === getDayfromStarted(currentch?.startDate)) ?
-                                       <></>
+                                        <></>
                                         :
                                         <div className="mark_today">
-                                        <p className="mark">Completed today's goals?</p>
-                                        <button onClick={()=>{
-                                            dispatch(markDayAsCompleted(currentch?._id))
-                                        }}>Yeah, Done</button>
-                                    </div>
+                                            <p className="mark">Completed today's goals?</p>
+                                            <button onClick={() => {
+                                                dispatch(markDayAsCompleted(currentch?._id))
+                                            }}>Yeah, Done</button>
+                                        </div>
                                 }
                                 {/* <div className="mark_today">
                                     <p className="mark">Completed today's goals?</p>
@@ -64,10 +67,10 @@ const ChallengeDashboard = () => {
                                     Array.from({ length: currentch?.noOfdays }, (_, index) => {
                                         const dayyy = currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1);
                                         if (!dayyy) {
-                                            return <div className={`map`}>
+                                            return <div key={index} className={`map`}>
                                             </div>
                                         } else {
-                                            return <div className={`map ${dayyy.status === true ? 'completed' : ''}`}>
+                                            return <div key={index} className={`map ${dayyy.status === true ? 'completed' : ''}`}>
                                             </div>
                                         }
                                     })
@@ -76,6 +79,15 @@ const ChallengeDashboard = () => {
                         </div>
                     </div>
             }
+            <Dialog onClose={() => { }} open={marking} PaperProps={{
+                style: {
+                    backgroundColor: 'transparent',
+                    boxShadow: 'none',
+                },
+            }}>
+                <img src={LoadingAnimation } alt="" />
+            </Dialog>
+
         </>
     )
 }
