@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './createChallenge.scss'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { Delete } from '@mui/icons-material'
+import Checkbox from '@mui/material/Checkbox'
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -55,6 +55,7 @@ const CreateChallenge = () => {
     const [anchorE1, setAnchorE1] = useState(null)
     const open = Boolean(anchorE1)
     const [selectedVisibility, setSelectedVisibility] = useState(visibilities[0])
+    const [includeStartDate, setincludeStartDate] = useState(false)
 
     const handleClick = (e) => {
         setAnchorE1(e.currentTarget)
@@ -69,6 +70,11 @@ const CreateChallenge = () => {
 
     const closeDropdown = () => {
         setAnchorE1(null)
+    }
+
+    const clearChallengeHandler = () => {
+        setincludeStartDate(false);
+        setChallengeData({name: '', description: '', noOfdays: '' ,visibility:'Public'})
     }
 
 
@@ -96,7 +102,7 @@ const CreateChallenge = () => {
                 <div className="days_and_visibility">
                     <div className="days">
                         <label htmlFor="">Days*</label>
-                        <input placeholder='Write the Duration' type="number" min={1} name='noOfDays' value={challengeData.noOfdays} onChange={(e) => { onChange(e) }} />
+                        <input placeholder='Write the Duration' type="number" min={1} name='noOfdays' value={challengeData.noOfdays} onChange={(e) => { onChange(e) }} />
                     </div>
                     <div className="visibility">
                         <label htmlFor="Visibility">Visibility  </label>
@@ -141,19 +147,35 @@ const CreateChallenge = () => {
                         </ClickAwayListener>
                     </div>
                 </div>
+                
 
 
             </div>
             <div className="detailed">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus ducimus dolor eum iusto incidunt nostrum. Neque, libero. Ut, in reprehenderit </p>
+                <p>Please fill details carefully to help others understand your challenge easily and As you are creating this challenge you will be auto enrolled.  </p>
             </div>
+            <div className="startfromtoday">
+                    <Checkbox
+                        style={{color:"#fff"}}
+                        checked={includeStartDate}
+                        onChange={(e)=>{
+                            setincludeStartDate(e.target.checked)
+                            console.log("Clicked")
+                        }}
+                    />
+                    <p>Start From Today, Only applicable to you (if selected) and users who will select it.</p>
+                </div>
+
+                
 
             <div className="buttons">
 
-                <button className="clear"><img src={Delete} alt="" />Delete</button>
+                <button className="clear" onClick={()=>{
+                    clearChallengeHandler()
+                }}> Delete</button>
                 <button className="save" onClick={() => {
                     // console.log(challengeData)
-                    dispatch(createChallenge(challengeData))
+                    dispatch(createChallenge(challengeData , includeStartDate))
                 }}>Save</button>
                 {/* <img src={Delete} alt="" /> */}
             </div>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const createChallenge = (data) => async(dispatch) => {
+export const createChallenge = (data ,insdate) => async(dispatch) => {  //insdate ---> include start date
     try {
         if(data.name === '' || data.name === null || data.name === undefined){
             dispatch({
@@ -13,17 +13,18 @@ export const createChallenge = (data) => async(dispatch) => {
             const response = await axios.post('http://localhost:5000/api/challenge/create' , 
             {
                 challengeData : data,
-                createdBy:"6547c98e4f4e1b97039fde71"
+                createdBy:"6547c98e4f4e1b97039fde71",
+                includeStartDate:insdate
             },
             {
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
-            console.log(response.data)
             if(response.data.success === true){
                 dispatch({
                     type:"CREATE_NEW_CHALLENGE_SUCCESS"
+                    
                 })
             }else{
                 dispatch({

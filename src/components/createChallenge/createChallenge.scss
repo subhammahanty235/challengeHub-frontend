@@ -93,6 +93,7 @@
                
             }
         }
+        
 
     }
     .detailed{
@@ -103,6 +104,19 @@
         p{
             font-size: 13px;
             color: gray;
+        }
+    }
+    .startfromtoday{
+        margin-left: 9%;
+        width: 70%;
+        display: flex;
+        align-items: center;
+        p{
+            margin-left: 5px;
+            // width:82.3% ;
+            text-align: left;
+            font-size: medium;
+            opacity: 0.8;
         }
     }
     .buttons{
