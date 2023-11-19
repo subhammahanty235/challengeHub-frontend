@@ -8,9 +8,21 @@ import Dialog from '@mui/material/Dialog';
 import LoadingAnimation from '../../assets/images/loading.svg'
 import LoadingWhite from '../../assets/images/loading-white.svg'
 const ChallengeDashboard = () => {
-    const {loading, marking, currentch } = useSelector((state) => state.challenge)
+    const { loading, marking, currentch } = useSelector((state) => state.challenge)
     const dispatch = useDispatch();
     // const loading = true;
+
+    const getDate = (pdate) => {
+        const date = new Date(pdate);
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        let currentDate = `${day}-${month}-${year}`;
+        return currentDate;
+    }
 
     return (
         <>
@@ -35,15 +47,25 @@ const ChallengeDashboard = () => {
                                 </div>
 
                                 {
-                                    currentch?.DayWisecompletedOn.some(day => day.dayNumber === getDayfromStarted(currentch?.startDate)) ?
-                                        <></>
-                                        :
-                                        <div className="mark_today">
-                                            <p className="mark">Completed today's goals?</p>
-                                            <button onClick={() => {
-                                                dispatch(markDayAsCompleted(currentch?._id))
-                                            }}>Yeah, Done</button>
-                                        </div>
+                                    currentch.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                        <></> :
+                                        currentch.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ?
+                                            <></> :
+                                            <div className="mark_today">
+                                                <p className="mark">Completed today's goals?</p>
+                                                <button onClick={() => {
+                                                    dispatch(markDayAsCompleted(currentch?._id))
+                                                }}>Yeah, Done</button>
+                                            </div>
+                                    // currentch?.DayWisecompletedOn.some(day => day.dayNumber === getDayfromStarted(currentch?.startDate)) ?
+                                    //     <></>
+                                    //     :
+                                    //     <div className="mark_today">
+                                    //         <p className="mark">Completed today's goals?</p>
+                                    //         <button onClick={() => {
+                                    //             dispatch(markDayAsCompleted(currentch?._id))
+                                    //         }}>Yeah, Done</button>
+                                    //     </div>
                                 }
                                 {/* <div className="mark_today">
                                     <p className="mark">Completed today's goals?</p>
@@ -58,14 +80,29 @@ const ChallengeDashboard = () => {
                             </p>
 
                             <div className="today_status">
-                                <p className="date">Current Date: 7th December 2023</p>
-                                <p className="status">Status: Not Yet Completed</p>
+                                <p className="date">Current Date: {getDate(new Date())}</p>
+                                <p className="status"> Status:
+                                    {
+                                        // const dayyy = currentch.includeStartDate === false? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) :(
+                                        //     currentch?.DayWisecompletedOn?.find((data) =>  data.dayNumber === index)
+
+                                        // );
+                                        // currentch.includeStartDate === false? currentch?.DayWisecompletedOn?.find((data) => )
+
+                                        currentch.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ? " Completed" : currentch.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ? " Warm Up Day" : " Not yet Done"
+
+                                    }
+
+                                </p>
                             </div>
 
                             <div className="maps">
                                 {
                                     Array.from({ length: currentch?.noOfdays }, (_, index) => {
-                                        const dayyy = currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1);
+                                        const dayyy = currentch.includeStartDate === false ? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) : (
+                                            currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index)
+
+                                        );
                                         if (!dayyy) {
                                             return <div key={index} className={`map`}>
                                             </div>
@@ -85,7 +122,7 @@ const ChallengeDashboard = () => {
                     boxShadow: 'none',
                 },
             }}>
-                <img src={LoadingAnimation } alt="" />
+                <img src={LoadingAnimation} alt="" />
             </Dialog>
 
         </>
