@@ -67,10 +67,7 @@ const ChallengeDashboard = () => {
                                     //         }}>Yeah, Done</button>
                                     //     </div>
                                 }
-                                {/* <div className="mark_today">
-                                    <p className="mark">Completed today's goals?</p>
-                                    <button>Yeah, Done!</button>
-                                </div> */}
+                               
                             </div>
                         </div>
 
