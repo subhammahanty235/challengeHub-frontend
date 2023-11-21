@@ -3,13 +3,15 @@ import CreateChallenge from '../../components/createChallenge/CreateChallenge'
 import './createOrJoin.scss'
 import AllChallenges from '../../components/allChallenges/AllChallenges'
 import Navbar from '../../components/navbar/Navbar'
+import ExpandedChallenge from '../../components/expandedChallenge/ExpandedChallenge'
 const CreateOrJoinPage = () => {
     return (
         <>
         <Navbar/>
             <div className='homepage'>
                 <div className="section1">
-                    <CreateChallenge />
+                    <ExpandedChallenge/>
+                    {/* <CreateChallenge /> */}
                 </div>
                 <div className="section2">
                     <AllChallenges />

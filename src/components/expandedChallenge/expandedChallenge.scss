@@ -1,0 +1,106 @@
+.expanded_challenge {
+    border-right: 1px solid rgba(194, 224, 255, 0.08);
+    height: 100%;
+    margin-top: 30px;
+    margin-right: 20px;
+    position: relative;
+
+    .name_description_box {
+        margin-top: 10px;
+        width: calc(90% - 40px);
+        background-color: #fff;
+        padding: 0px 20px;
+        padding-bottom: 20px;
+        padding-top: 10px;
+        border-radius: 20px;
+        .name_joinNow {
+            // background-color: #fff;
+            // width: 90%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .name {
+                text-align: left;
+                // width: 90%;
+                color: #302e2e;
+                font-size: xx-large;
+                font-weight: 700;
+                margin: 0;
+                opacity: 0.9;
+                // background-color: #1a1a1a;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+                box-shadow: -6px -6px 30px 2px #0333481A;
+            }
+            .join_btn{
+                background-color: #fff;
+                color: #646cff;
+                border: 1px solid #646cff;
+                padding: 5px 10px;
+                font-weight: 500;
+                // border: 1px solid #646cff;
+                transition: all 0.2s;
+                &:hover{
+                    background-color: #646cff;
+                    color: #fff;
+                }
+            }
+        }
+
+        .description {
+            text-align: left;
+            width: 90%;
+            opacity: 0.8;
+            color:#302e2e ;
+        }
+
+    }
+
+    .moredetails {
+        margin-top: 20px;
+        width: 90%;
+    }
+
+    .open_create_new{
+        opacity: 0.8;
+        position: absolute;
+        cursor: pointer;
+        bottom: 60px;
+        background-color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        border-radius: 50%;
+        color: #646cff;
+        width: fit-content;
+        align-items: center;
+        // padding: 5px;
+        span{
+            display: none;
+        }
+
+        &:hover{
+            border-radius: 25px;
+            width: fit-content;
+            padding-right: 10px;
+            span{
+                display: block;
+                font-size: large;
+                font-weight: 700;
+                
+            }
+        }
+    }
+
+
+    .join_popup{
+       
+        text-align: center;
+        color: #646cff;
+
+        p{
+            color: #646cff;
+        }
+    }
+}

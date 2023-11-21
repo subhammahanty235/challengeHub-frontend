@@ -47,9 +47,9 @@ const ChallengeDashboard = () => {
                                 </div>
 
                                 {
-                                    currentch.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                    currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
                                         <></> :
-                                        currentch.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ?
+                                        currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ?
                                             <></> :
                                             <div className="mark_today">
                                                 <p className="mark">Completed today's goals?</p>
@@ -80,13 +80,8 @@ const ChallengeDashboard = () => {
                                 <p className="date">Current Date: {getDate(new Date())}</p>
                                 <p className="status"> Status:
                                     {
-                                        // const dayyy = currentch.includeStartDate === false? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) :(
-                                        //     currentch?.DayWisecompletedOn?.find((data) =>  data.dayNumber === index)
 
-                                        // );
-                                        // currentch.includeStartDate === false? currentch?.DayWisecompletedOn?.find((data) => )
-
-                                        currentch.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ? " Completed" : currentch.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ? " Warm Up Day" : " Not yet Done"
+                                        currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ? " Completed" : currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ? " Warm Up Day" : " Not yet Done"
 
                                     }
 

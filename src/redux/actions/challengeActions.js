@@ -10,15 +10,15 @@ export const createChallenge = (data ,insdate) => async(dispatch) => {  //insdat
             return;
         }
         else{
-            const response = await axios.post('http://localhost:5000/api/challenge/create' , 
+            const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/create` , 
             {
                 challengeData : data,
-                createdBy:"6547c98e4f4e1b97039fde71",
                 includeStartDate:insdate
             },
             {
                 headers: {
                     "Content-Type": "application/json",
+                    "token": localStorage.getItem("token")
                 },
             })
             if(response.data.success === true){
@@ -44,10 +44,11 @@ export const createChallenge = (data ,insdate) => async(dispatch) => {  //insdat
 export const getAllChallenges = () => async(dispatch) =>{
     try {
         dispatch({type:"FETCH_ALL_CHALLENGES"})
-        const response = await axios.get('http://localhost:5000/api/challenge/getAll/654e75df282424675761ae53',
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/getAll`,
         {
             headers: {
                 "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
             },
         })
 
@@ -73,10 +74,11 @@ export const getAllChallenges = () => async(dispatch) =>{
 export const getMyChallenges = () => async(dispatch) =>{
     try {
         dispatch({type:"FETCH_MY_CHALLENGES"})
-        const response = await axios.get('http://localhost:5000/api/challenge/getmyChallenges/6547c98e4f4e1b97039fde71',
+        const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/getmyChallenges`,
         {
             headers: {
                 "Content-Type": "application/json",
+                "token": localStorage.getItem("token")
             },
         })
 
@@ -107,7 +109,7 @@ export const markDayAsCompleted = (challengeId)=> async (dispatch) => {
     try {
         dispatch({type:"MARK_DAY_AS_COMPLETED"})
 
-        const response = await axios.post(`http://localhost:5000/api/challenge/markasdone/${challengeId}` ,{}, {
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/markasdone/${challengeId}` ,{}, {
             headers: {
                 "Content-Type": "application/json",
                 "token": localStorage.getItem("token")

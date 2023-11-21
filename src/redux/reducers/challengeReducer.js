@@ -70,6 +70,16 @@ export const challengeReducer = createReducer(initialState , {
     // temp
     SET_CURRENT_OPENED_CHALLENGE: (state , action)=>{
         state.currentch = action.payload;
+    },
+    OPEN_CREATE_CHALLENGE_FORM:(state) => {
+        state.opencreateForm = true;
+        state.expandedch = null;
+    },
+
+    SET_CURRENT_EXPANDED_CHALLENGE: (state,action) => {
+        state.expandedch = action.payload;
+        state.opencreateForm = false;
     }
+
 
 })

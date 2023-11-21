@@ -3,7 +3,7 @@ import axios from 'axios'
 export const getOtp = (email) => async(dispatch) => {
     try {
         dispatch({type:"GET_OTP"});
-        const response = await axios.post("http://localhost:5000/api/auth/generateotp" , 
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/generateotp` , 
         {
             email:email
         },
@@ -34,7 +34,7 @@ export const getOtp = (email) => async(dispatch) => {
 export const verifyOtp = (email , otp) => async(dispatch) => {
     try {
         dispatch({type:"VERIFY_OTP"});
-        const response = await axios.post("http://localhost:5000/api/auth/verifyotp", 
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/auth/verifyotp`, 
         {
             email:email,
             otp:otp
