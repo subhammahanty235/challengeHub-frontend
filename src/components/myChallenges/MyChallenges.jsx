@@ -13,6 +13,7 @@ const MyChallenges = () => {
             <p className="heading">My challenges</p>
             {
                 loading === true ?
+                
                 <div className="loading"><img src={LoadingWhite} alt="" /></div> :
                     <div className="challenges">
                         

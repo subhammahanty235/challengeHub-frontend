@@ -17,3 +17,44 @@
         height: 100%;
     }
 }
+
+.nochallenges{
+    
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    height: calc(100vh - 55px);
+    .section1{
+        width: 70vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            margin-bottom: 10px;
+            font-size: 3.5rem;
+            color: #646cff;
+            text-shadow: 1.5px 1.5px 4px #646cff;
+        }
+        span{
+            font-size: 1.9rem;
+            opacity: 0.7;
+        }
+        .create_join_btn{
+            margin-top: 30px;
+            width: 20% ;
+            border: 2px solid #646cff;
+            padding: 5px;
+            border-radius: 10px;
+        }
+        
+        
+    }
+    
+    .section2{
+        width: 30vw;
+        height: 100%;
+    }
+    
+}
