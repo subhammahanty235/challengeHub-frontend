@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './createProfile.scss'
 import { useDispatch } from 'react-redux'
-import {createProfile} from '../../redux/actions/userActions'
+import { createProfile } from '../../redux/actions/userActions'
 import Illustration1 from '../../assets/images/illustration1.svg'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 const CreateProfile = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
+    const { profilecreated } = useSelector((state) => state.user)
     const [data, setdata] = useState({ name: '', mobileNumber: '', dateofbirth: '', gender: '', profilepic: '' });
-
+    useEffect(() => {
+        if (profilecreated === true) {
+            navigate('/')
+        }
+    },[profilecreated , dispatch])
+    
     const onChangeHandler = (e) => {
         setdata({ ...data, [e.target.name]: e.target.value })
     }

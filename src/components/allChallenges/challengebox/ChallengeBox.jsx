@@ -9,6 +9,7 @@ const ChallengeBox = ({item}) => {
       type:"SET_CURRENT_EXPANDED_CHALLENGE",
       payload:item
     })
+    // window.history.pushState(null, null, `/challenges/challengeyd`);
 
   }
 

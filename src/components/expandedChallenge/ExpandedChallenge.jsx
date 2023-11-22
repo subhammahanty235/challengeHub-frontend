@@ -6,20 +6,38 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
 import AddIcon from '../../assets/icons/plus-icon.svg'
-import { Checkbox, Dialog } from '@mui/material';
+// import { Checkbox, ClickAwayListener, Dialog } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { JoinPopup, JoinedPopup } from '../../common/dialog/Dialogs';
+import { dateFormattingHelper } from '../../utils/dateformatter'
+import { useNavigate } from 'react-router-dom';
 const ExpandedChallenge = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const { expandedch, joined } = useSelector((state) => state.challenge)
+  const [openJoinPopup, setopenJoinPopup] = useState(false)
 
-  const [openJoinPopup, setopenJoinPopup] = useState(true)
+  const navigatetoHomepage = () => {
+    dispatch({
+      type:"CLEAR_CREATE_CHALLENGE_TEMP"
+    })
+    navigate('/')
+  }
+
+
+
+
+
 
   return (
     <div className='expanded_challenge'>
       <div className="name_description_box">
         <div className="name_joinNow">
-          <p className="name">Code Challenge</p>
-          <button className='join_btn'>Join Challenge</button>
+          <p className="name">{expandedch?.name}</p>
+          <button className='join_btn' onClick={() => { setopenJoinPopup(true) }}>Join Challenge</button>
 
         </div>
-        <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur explicabo est mollitia minima ex fugit beatae dicta excepturi quas ipsum, provident iste dolores quos nisi, aperiam nobis, quidem esse alias aliquid. Asperiores, odit repudiandae.</p>
+        <p className="description">{expandedch?.description}</p>
       </div>
 
       <div className="moredetails">
@@ -28,49 +46,39 @@ const ExpandedChallenge = () => {
           <Table sx={{ backgroundColor: "#242424", border: "1px solid #646cff", color: "#fff" }}>
             <TableHead>
               <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Created</TableCell>
-              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>12-10-2025</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>{dateFormattingHelper(expandedch?.created)}</TableCell>
             </TableHead>
             <TableHead>
-              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Created</TableCell>
-              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>12-10-2025</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Duration</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>{expandedch?.noOfdays} Days</TableCell>
             </TableHead>
             <TableHead>
+              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Total Participations</TableCell>
+              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>{expandedch?.totalCrowd}</TableCell>
+            </TableHead>
+            {/* <TableHead>
               <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Created</TableCell>
               <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>12-10-2025</TableCell>
-            </TableHead>
-            <TableHead>
-              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>Created</TableCell>
-              <TableCell sx={{ color: "#fff", fontSize: "large", fontWeight: 500, border: "1px solid #646cff" }} align='center'>12-10-2025</TableCell>
-            </TableHead>
+            </TableHead> */}
           </Table>
         </TableContainer>
       </div>
 
       {/* Popup or Dialog box to confirm user */}
-      <Dialog open={openJoinPopup}>
-        <div className="join_popup">
-          <p>Wanna Join?</p>
-          <p>Once joined, there's only two Options <br />Completed or Failed</p>
-          <p>Ready?</p>
-          <div className="startfromtoday">
-            
-            <Checkbox
-              // style={{ color: "#fff" }}
-              checked={false}
-              onChange={(e) => {
-                // setincludeStartDate(e.target.checked)
-                console.log("Clicked")
-              }}
-            />
-            <p>Start From Today.</p>
-          </div>
+      {
+        joined === true ?
+          <JoinedPopup open={joined} navigate={navigatetoHomepage} /> :
+          <JoinPopup open={openJoinPopup} setOpen={setopenJoinPopup} challenge={expandedch} />
 
-        </div>
-      </Dialog>
+      }
+
+
 
       <div className="open_create_new">
         <img src={AddIcon} alt="" /><span>Create New</span>
       </div>
+
+
     </div>
   )
 }

@@ -66,6 +66,25 @@ export const challengeReducer = createReducer(initialState , {
         state.error = action.payload
     },
 
+    JOIN_CHALLENGE: (state) => {
+        state.loading = true;
+    },
+    JOIN_CHALLENGE_SUCCESS: (state,action) => {
+        state.loading = false;
+        state.joined = true;
+    },
+    JOIN_CHALLENGE_FAILED: (state, action) => {
+        state.loading = false;
+        state.joined = false;
+        state.error = action.payload;
+    },
+
+    CLEAR_CREATE_CHALLENGE_TEMP : (state)=>{
+        state.joined = null;
+        state.error = null;
+
+    },
+
 
     // temp
     SET_CURRENT_OPENED_CHALLENGE: (state , action)=>{

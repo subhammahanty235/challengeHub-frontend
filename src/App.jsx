@@ -17,8 +17,8 @@ function App() {
     if (authenticated === true || localStorage.getItem('token')) {
       console.log("authenticated"  )
     }else{
-      console.log("auth990909")
       navigate('/login')
+      
     }
   }, [authenticated])
 

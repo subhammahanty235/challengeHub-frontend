@@ -21,13 +21,13 @@ export const userReducer = createReducer(initialState , {
     },
     CREATE_USER_PROFILE_SUCCESS: (state)=>{
         state.loading = false;
-        state.success = true;
+        state.profilecreated = true;
         
 
     },
     CREATE_USER_PROFILE_FAILED: (state, action)=>{
         state.loading = false;
-        state.success = false;
+        state.profilecreated = false;
         state.error = action.payload
     },
 })

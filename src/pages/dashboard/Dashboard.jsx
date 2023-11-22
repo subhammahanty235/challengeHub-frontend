@@ -18,7 +18,7 @@ const Dashboard = () => {
         <>
             <Navbar />
             {
-                mychallenges.length !== 0 ?
+                mychallenges?.length !== 0 ?
                     <div className="dashboard">
 
                         <div className="section1">

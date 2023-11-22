@@ -31,14 +31,15 @@ export const createProfile = (data) => async (dispatch) => {
         }
 
 
-        const response = await axios.put('http://localhost:5000/api/user/profile/create',
+        const response = await axios.put(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/user/profile/create`,
             {
                 profileData: newData,
-                userId: "6547c98e4f4e1b97039fde71"
+                
             },
             {
                 headers: {
                     "Content-Type": "application/json",
+                    "token": localStorage.getItem("token")
                 },
             }
         )
@@ -48,8 +49,9 @@ export const createProfile = (data) => async (dispatch) => {
         if (response.data.success === true) {
             dispatch({
                 type: "CREATE_USER_PROFILE_SUCCESS",
-
             })
+
+            
         }
 
     } catch (error) {
