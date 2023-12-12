@@ -3,7 +3,7 @@ import './login.scss'
 import { getOtp, verifyOtp } from '../../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import OtpInput from 'react-otp-input';
-import LoginScreenIllustration from '../../assets/images/login-illustration.svg'
+// import LoginScreenIllustration from '../../assets/images/login-illustration.svg'
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const Login = () => {
   return (
     <div className='login_screen'>
       <div className="login_form_illustration">
+        Challenge <br /> <span> HUB</span>
         {/* <img src={LoginScreenIllustration} alt="" /> */}
       </div>
 
@@ -36,7 +37,7 @@ const Login = () => {
         otpsent === true && verifiedotp === false || verifiedotp === null ?
           <>
             <div className="login_page_form_components">
-              <p className="login_page_header">Enter Your Emailid</p>
+              <p className="login_page_header">Enter The OTP</p>
               <div className="main_login_form">
                 {/* <input type="text" className="email_input" /> */}
                 <OtpInput

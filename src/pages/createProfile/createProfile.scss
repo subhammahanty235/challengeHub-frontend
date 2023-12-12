@@ -15,14 +15,14 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-         
 
 
-        
+
+
     }
 
     .create_profile_form {
-        
+
         display: flex;
         align-items: flex-end;
         justify-content: center;
@@ -31,11 +31,55 @@
         height: 100%;
         row-gap: 20px;
 
+        .header {
+            width: 70%;
+            padding: 0px 23px;
+            text-align: left;
+            font-size: 25px;
+            font-weight: 800;
+            width: 70%;
+            text-align: left;
+            margin-bottom: 8px;
+            margin: 0;
+            // background-color: aquamarine;
+        }
+
         input {
             height: 50px;
             width: 70%;
             padding: 0px 10px;
             font-size: larger;
+        }
+
+        #gender_input {
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .create_profile_screen {
+        align-items: center;
+        justify-content: center;
+        .create_profile_illustration {
+            display: none;
+            // width: 0;
+            // background-color: aqua;
+
+            img {
+                display: none;
+            }
+
+        }
+
+        .create_profile_form {
+            width: 100vw;
+            align-items: center;
+            justify-content: center;
+            // background-color: aquamarine;
         }
     }
 }

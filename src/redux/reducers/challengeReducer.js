@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 const initialState = {};
 
-export const challengeReducer = createReducer(initialState , {
+export const challengeReducer = createReducer(initialState, {
     CREATE_NEW_CHALLENGE: (state) => {
         state.loading = true;
     },
@@ -9,7 +9,7 @@ export const challengeReducer = createReducer(initialState , {
         state.loading = false;
         state.challengeCreated = true;
     },
-    CREATE_NEW_CHALLENGE_FAILED : (state , action) => {
+    CREATE_NEW_CHALLENGE_FAILED: (state, action) => {
         state.loading = false;
         state.challengeCreated = false;
         state.error = action.payload;
@@ -21,14 +21,14 @@ export const challengeReducer = createReducer(initialState , {
         state.loading = false;
         state.challenges = action.payload.challenges
     },
-    FETCH_ALL_CHALLENGES_FAILED: (state , action) => {
+    FETCH_ALL_CHALLENGES_FAILED: (state, action) => {
         state.loading = false;
         state.error = action.payload
     },
     FETCH_MY_CHALLENGES: (state) => {
         state.loading = true;
     },
-    FETCH_MY_CHALLENGES_SUCCESS: (state,action) => {
+    FETCH_MY_CHALLENGES_SUCCESS: (state, action) => {
         state.loading = false;
         state.mychallenges = action.payload.challenges;
     },
@@ -39,14 +39,14 @@ export const challengeReducer = createReducer(initialState , {
     MARK_DAY_AS_COMPLETED: (state) => {
         state.marking = true;
     },
-    MARK_DAY_AS_COMPLETED_SUCCESS: (state , action) => {
+    MARK_DAY_AS_COMPLETED_SUCCESS: (state, action) => {
         state.marking = false;
         state.marked = true;
-        state.mychallenges =state.mychallenges?.map((challenge) => {
-            if(challenge._id === action.challengeID){
+        state.mychallenges = state.mychallenges?.map((challenge) => {
+            if (challenge._id === action.challengeID) {
                 return {
-                    ...challenge ,
-                    DayWisecompletedOn:[
+                    ...challenge,
+                    DayWisecompletedOn: [
                         ...challenge.DayWisecompletedOn,
                         action.payload.newData
                     ]
@@ -54,11 +54,13 @@ export const challengeReducer = createReducer(initialState , {
             }
             return challenge
         })
-        state.currentch = {...state.currentch , DayWisecompletedOn:[
-            ...state.currentch?.DayWisecompletedOn,
-            action.payload.newData
-        ] }
-        
+        state.currentch = {
+            ...state.currentch, DayWisecompletedOn: [
+                ...state.currentch?.DayWisecompletedOn,
+                action.payload.newData
+            ]
+        }
+
     },
     MARK_DAY_AS_COMPLETED_FAILED: (state, action) => {
         state.marking = false;
@@ -69,7 +71,7 @@ export const challengeReducer = createReducer(initialState , {
     JOIN_CHALLENGE: (state) => {
         state.loading = true;
     },
-    JOIN_CHALLENGE_SUCCESS: (state,action) => {
+    JOIN_CHALLENGE_SUCCESS: (state, action) => {
         state.loading = false;
         state.joined = true;
     },
@@ -79,23 +81,53 @@ export const challengeReducer = createReducer(initialState , {
         state.error = action.payload;
     },
 
-    CLEAR_CREATE_CHALLENGE_TEMP : (state)=>{
+    CLEAR_CREATE_CHALLENGE_TEMP: (state) => {
         state.joined = null;
         state.error = null;
+        state.expandedch = {}
 
+    },
+
+    ADD_NOTE: (state) => {
+        state.savingNote = true;
+    },
+    ADD_NOTE_SUCCESS: (state,action) => {
+        state.savingNote = false;
+        state.savedNote = true;
+        state.mychallenges = state.mychallenges?.map((challenge) => {
+            if (challenge._id === action.challengeID) {
+                return {
+                    ...challenge,
+                    DayWisecompletedOn: [
+                        action.dayWiseCompletedOn
+                    ]
+                }
+            }
+            return challenge
+        })
+        state.currentch.DayWisecompletedOn = action.dayWiseCompletedOn
+
+    },
+    ADD_NOTE_FAILED: (state) => {
+        state.savingNote = false;
+        state.savedNote = false;
+    },
+    CREAR_NOTE_TEMP: (state) => {
+        state.savingNote = null;
+        state.savedNote = null;
     },
 
 
     // temp
-    SET_CURRENT_OPENED_CHALLENGE: (state , action)=>{
+    SET_CURRENT_OPENED_CHALLENGE: (state, action) => {
         state.currentch = action.payload;
     },
-    OPEN_CREATE_CHALLENGE_FORM:(state) => {
+    OPEN_CREATE_CHALLENGE_FORM: (state) => {
         state.opencreateForm = true;
         state.expandedch = null;
     },
 
-    SET_CURRENT_EXPANDED_CHALLENGE: (state,action) => {
+    SET_CURRENT_EXPANDED_CHALLENGE: (state, action) => {
         state.expandedch = action.payload;
         state.opencreateForm = false;
     }

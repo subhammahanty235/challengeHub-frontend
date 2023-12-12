@@ -74,6 +74,14 @@ export const getAllChallenges = () => async (dispatch) => {
 export const getMyChallenges = () => async (dispatch) => {
     try {
         dispatch({ type: "FETCH_MY_CHALLENGES" })
+        await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/check`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "token": localStorage.getItem("token")
+                },
+            }
+        )
         const response = await axios.get(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/getmyChallenges`,
             {
                 headers: {
@@ -168,6 +176,40 @@ export const joinChallenge = (data) => async (dispatch) => {
             type: "JOIN_CHALLENGE_FAILED",
             payload: error.message
         })
+    }
+}
+
+export const addNote = (data) => async (dispatch) => {
+    try {
+        dispatch({ type: "ADD_NOTE" })
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/addNote/${data.challengeID}`,
+            {
+                note: data.note
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "token": localStorage.getItem("token")
+                }
+            }
+        )
+        console.log(response.data)
+
+        if(response.data.success === true){
+           
+            dispatch({
+                type:"ADD_NOTE_SUCCESS",
+                challengeID:data.challengeID,
+                dayWiseCompletedOn:response.data.data
+        })
+        }else{
+            dispatch({
+                type:"ADD_NOTE_FAILED"
+            })
+        }
+
+    } catch (error) {
+        console.log(error)
     }
 }
 

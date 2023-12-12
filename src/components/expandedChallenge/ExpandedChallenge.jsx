@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import AddIcon from '../../assets/icons/plus-icon.svg'
 // import { Checkbox, ClickAwayListener, Dialog } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
-import { JoinPopup, JoinedPopup } from '../../common/dialog/Dialogs';
+import { JoinPopup, JoinedPopup } from '../../common/dialog/Dialogs'; 
 import { dateFormattingHelper } from '../../utils/dateformatter'
 import { useNavigate } from 'react-router-dom';
 const ExpandedChallenge = () => {
@@ -74,7 +74,11 @@ const ExpandedChallenge = () => {
 
 
 
-      <div className="open_create_new">
+      <div className="open_create_new" onClick={()=>{
+        dispatch({
+          type:"OPEN_CREATE_CHALLENGE_FORM"
+        })
+      }}>
         <img src={AddIcon} alt="" /><span>Create New</span>
       </div>
 

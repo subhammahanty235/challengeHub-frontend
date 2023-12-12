@@ -13,6 +13,7 @@
 .challenge_dashboard{
     border-right:1px solid rgba(194, 224, 255, 0.08);
     height: 100%;
+    // background-color: #535bf2;
 
     .challenge_datails{
         margin-top: 30px;
@@ -22,17 +23,45 @@
         border-radius: 20px;
         padding: 10px 20px;
         display: flex;
+        
         flex-direction: column;
         justify-content: space-between;
 
 
         .challenge_name{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             text-align: left;
             color: #302e2e;
             font-size:x-large;
             font-weight: 600;
             margin: 0;
            opacity: 0.9;
+           p{
+            margin-left: 5px;
+            font-weight: 600;
+            width: 55px;
+            margin-top: 3px;
+            font-size: x-small;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #21BA45;
+            padding: 0px 9px;
+            padding-bottom: 2px;
+            text-align: center;
+            border-radius: 20px;
+            span{
+                margin-top: 2px;
+                height: 10px;
+                width: 10px;
+                border-radius: 50%;
+                // margin-bottom:2px;
+                background-color: #21BA45;
+            }
+            
+           }
         }
         .challenge_desc{
             text-align: left;
@@ -43,9 +72,7 @@
             // max-width: 300px;
             text-wrap: wrap;
         }
-        .other_details{
-            
-        }
+       
 
         .dates{
             color: #302e2e;
@@ -82,27 +109,135 @@
             }
         }
         .mark_today{
-            background-color: #535bf2;
-            opacity: 0.95;
+            border: 1px dashed #21BA45;
+            // background-color: #535bf2;
+            // opacity: 0.95;
             width: fit-content;
             display: flex;
             align-items: center;
             gap: 40px;
             padding: 0px 10px;
-            border-radius: 20px;
+            padding-right: 0;
+            border-radius: 10px;
             margin-top: 25px;
             p{
                 color: #302e2e;
+                color: #21BA45;
                 font-size: large;
                 font-weight: 500;
+                margin: 0;
 
             }
+            button{
+                // border-radius:20px ;
+                border: 1px solid #fff;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                // background-color: rgb(47, 44, 44);
+                img{
+                    height: 20px;
+                    color: #fff;
+                }
+            }
 
+
+        }
+        .add_done_for_today{
+            color: #302e2e;
+            // padding: 0px 10px;
+            padding-right: 0;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            border-radius: 20px;
+            border-radius: 10px;
+            gap: 10px;
+            margin-top: 10px;
+            // background-color: #fff;
+            // background-color: #fff;
+            // border-right: none;
+            p{
+                font-size: large;
+                font-weight: 500;
+                margin: 0;
+            }
+
+            img{
+                height: 20px;
+            }
+
+        }
+        .add_note_button{
+            display: flex;
+            align-items: center;
+            border: 2px solid red;
+            border: 1.3px dashed #535bf2;
+            width: fit-content;
+            padding: 0px 10px;
+            padding-right: 0;
+            // margin:10px 0px;
+            margin-top: 20px;
+            border-radius: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            gap: 30px;
+            border-right: none;
+            p{
+                margin: 0;
+                font-size: large;
+                font-weight: 500;
+                color: #1a1a1a;
+                color: #535bf2;
+            }
+            button{
+                text-align: center;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                // justify-content:space-between;
+                // border-radius: 20px;
+
+                border: 1.3px solid #fff;
+                img{
+                    height: 20px;
+                    color: #fff;
+                }
+            }
+        }
+        .message{
+            color: #1a1a1a;
+            text-align: left;
+            border: 1px solid #302e2e;
+            width: fit-content;
+            margin-top: 20px;
+            padding: 0px 20px;
+            padding-right: 10%;
+            border-radius: 10px;
+            font-size: larger;
+            .message_text{
+                margin: 0;
+                margin: 15px 0px;
+                font-weight: 700;
+
+            }
+        }
+        .failed{
+            border: 1px dashed red;
+            color: red;
+            opacity: 0.8;
+        }
+        .complted{
+            border: 1px dashed #535bf2;
+            color: #535bf2;
         }
     }
 
     .day_wise_map{
-        width: 90%;
+        width: 93%;
+        height: 100%;
+        
         .map_heading{
             text-align: left;
             font-size: larger;
@@ -135,6 +270,16 @@
             .completed{
                 background-color: #535bf2;
             }
+        }
+
+        .alldwcdata{
+            margin-top: 25px;
+            width: 100%;
+            // flex: 1
+            min-height:35%;
+            // background-color: #21BA45;
+           
+            
         }
 
 

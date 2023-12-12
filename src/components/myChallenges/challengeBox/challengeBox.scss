@@ -69,6 +69,16 @@
         text-align: right;
         // background-color: cyan;
         width: 100%;
+        // color: #21BA45;
+        
+    }
+    .Ongoing{
         color: #21BA45;
+    }
+    .Completed{
+        color: #535bf2;
+    }
+    .Failed{
+        color: red;
     }
 }

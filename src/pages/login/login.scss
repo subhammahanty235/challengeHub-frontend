@@ -9,23 +9,41 @@
     flex: 1;
 
     .login_form_illustration {
+        box-shadow: 8px 8px 20px 0px #00000026;
+        border-right:1px solid rgba(194, 224, 255, 0.08) ;
         width: 50vw;
         height: 80%;
-        background-color: #fff;
-        align-items: flex-start;
-        border-bottom-left-radius: 20%;
+        // background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        // border-bottom-left-radius: 20%;
         // justify-content: b;
+        font-size: 5rem;
+        font-weight: 800;
+        text-transform: uppercase;
         // border: 2px solid #fff;
+        span{
+            box-shadow: 8px 8px 20px 0px #00000026;
+            background-color: #646cff;
+            padding: 0rem 9rem;
+            border-radius: 30px;
+            font-size: 4rem;
+        }
 
     }
 
     .login_page_form_components {
+        box-shadow: 8px 8px 20px 0px #00000026;
         width: 50vw;
         height: 100%;
+        height: 80%;
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
-        // align-items: center;
+        // align-items: flex-end;
+        align-items: center;
         justify-content:center ;
         row-gap: 5%;
         .login_page_header {
@@ -50,6 +68,7 @@
             // height: 60%;
             display: flex;
             align-items: flex-end;
+            align-items: center;
             
             flex-direction: column;
             width: 100%;
@@ -88,6 +107,41 @@
             }
 
         }
+
+    }
+
+
+}
+
+@media screen and (max-width: 500px) {
+    .login_screen{
+        flex-direction: column;
+        box-shadow: none;
+
+        .login_form_illustration{
+            box-shadow: none;
+            font-size: 2.5rem;
+            margin: 0;
+            height: 20%;
+            border: none;
+            border-bottom: 1px solid rgba(194, 224, 255, 0.08);
+            span{
+                font-size: 2rem;
+                padding: 0 6rem;
+                border-radius: 20px;
+
+            }
+
+        }
+        .login_page_form_components{
+            box-shadow: none;
+            width: 100vw;
+            margin-top: 20%;
+            justify-content: flex-start;
+
+            // background-color: cyan;
+        }
+
 
     }
 }

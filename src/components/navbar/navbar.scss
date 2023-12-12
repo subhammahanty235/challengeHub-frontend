@@ -39,10 +39,18 @@
             color:#5e65ea ;
         }
     }
-    img{
+    .avatar{
+        background-color: #535bf2;
         height: 30px;
         width: 30px;
         border-radius: 50%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: small;
+        font-weight: 600;
+        // opacity: 0.8;
 
         
     }

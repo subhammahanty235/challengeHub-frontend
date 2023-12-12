@@ -75,7 +75,16 @@
         color: #646cff;
         width: fit-content;
         align-items: center;
+        box-shadow: 8px 8px 20px 0px #00000026;
         // padding: 5px;
+        img{
+            background-color: #646cff;
+           height: 45px;
+           width: 45px;
+           border-radius: 50%;
+           padding: 5px;
+        }
+
         span{
             display: none;
         }
@@ -88,6 +97,7 @@
                 display: block;
                 font-size: large;
                 font-weight: 700;
+                padding-left: 5px;
                 
             }
         }

@@ -5,22 +5,34 @@ import CreateProfile from './pages/createProfile/CreateProfile'
 import { Routes, Route } from "react-router-dom";
 import CreateOrJoinPage from './pages/createorjoinPage/CreateorJoinPage';
 
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dashboard from './pages/dashboard/Dashboard';
+import {fetchUser} from './redux/actions/userActions'
 function App() {
   const navigate = useNavigate();
   const { authenticated } = useSelector((state) => state.auth)
-
+  const {user} = useSelector((state)=>state.user)
+  const dispatch = useDispatch()
   useEffect(() => {
     if (authenticated === true || localStorage.getItem('token')) {
-      console.log("authenticated"  )
+      dispatch(fetchUser())
     }else{
       navigate('/login')
       
     }
   }, [authenticated])
+
+  useEffect(()=>{
+    if(user){
+      if(user.profileCreated !== true){
+        navigate("/createprofile")
+      }
+    }
+  },[user])
+
+
 
 
 

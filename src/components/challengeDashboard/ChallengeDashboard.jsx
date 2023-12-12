@@ -1,16 +1,41 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './challengeDashboard.scss'
 import { useSelector, useDispatch } from 'react-redux'
-import { dateFormattingHelper } from '../../utils/dateformatter'
-import { getDayfromStarted } from '../../utils/getDayfromStarted'
+import { calculateTimeRemaining } from '../../utils/timeHelperFunctions'
+// import { getDayfromStarted } from '../../utils/getDayfromStarted'
 import { markDayAsCompleted } from '../../redux/actions/challengeActions'
 import Dialog from '@mui/material/Dialog';
 import LoadingAnimation from '../../assets/images/loading.svg'
 import LoadingWhite from '../../assets/images/loading-white.svg'
+import { AddNotePopup } from '../../common/dialog/Dialogs'
+import PenIcon from '../../assets/icons/pen-icon.svg'
+import TickIcon from '../../assets/icons/tick-icon.svg'
+import SmileIcon from '../../assets/icons/smile-icon.svg'
+// import DetailedProgressAccordian from '../../common/accordian/detailedProgressAccordian'
+import DetailedProgressesAccordian from '../../common/accordian/DetailedProgressesAccordian'
+import DetailedDWC from './detailedDWC/DetailedDWC'
+
 const ChallengeDashboard = () => {
+
+
     const { loading, marking, currentch } = useSelector((state) => state.challenge)
+    const [openNotePopup, setOPenNotePopup] = useState(false)  //to open or close add note popup
+    // const [minimizePopup, setMinimizePopup] = useState(false)  //to minimize the add note popup, instead of closing it
+    const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+    const [showDWC, setShowDWC] = useState(false);
+
     const dispatch = useDispatch();
-    // const loading = true;
+
+    useEffect(() => {
+        // Update the timer every second
+        const intervalId = setInterval(() => {
+            setTimeRemaining(calculateTimeRemaining());
+        }, 1000);
+
+        // Clear the interval when the component is unmounted
+        return () => clearInterval(intervalId);
+    }, []);
+
 
     const getDate = (pdate) => {
         const date = new Date(pdate);
@@ -31,43 +56,73 @@ const ChallengeDashboard = () => {
                     <div className="challenge_dashboard">
                         <div className="challenge_datails">
                             <div className="name_desc">
-                                <p className="challenge_name">{currentch?.name}</p>
+                                <p className="challenge_name">{currentch?.name} <p><span style={{ backgroundColor: currentch?.challengeStatus.status === 0 ? "#21BA45" : currentch?.challengeStatus.status === 1 ? "#535bf2" : "red" }}></span>{currentch?.challengeStatus.status === 0 ? "Ongoing" : currentch?.challengeStatus.status === 1 ? "Completed" : "Failed"}</p></p>
                                 <p className="challenge_desc">{currentch?.description}</p>
                             </div>
                             <div className="other_details">
 
 
                                 <div className="dates">
-                                    <p className="start_date">Started on: {dateFormattingHelper(currentch?.startDate)}</p>
-                                    <p className="expectedEnd">Expected Deadline: {dateFormattingHelper(currentch?.expectedEnd)}</p>
+                                    <p className="start_date">Started on: {getDate(currentch?.startDate)}</p>
+                                    <p className="expectedEnd">Expected Deadline: {getDate(currentch?.expectedEnd)}</p>
                                 </div>
 
                                 <div className="currentPerformance">
-                                    <p>Current Performance Score: <span>75</span> </p>
+                                    <p>Current Performance Score: <span>{currentch?.performanceScore}</span> </p>
                                 </div>
 
                                 {
-                                    currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
-                                        <></> :
-                                        currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ?
-                                            <></> :
-                                            <div className="mark_today">
-                                                <p className="mark">Completed today's goals?</p>
-                                                <button onClick={() => {
-                                                    dispatch(markDayAsCompleted(currentch?._id))
-                                                }}>Yeah, Done</button>
-                                            </div>
-                                    // currentch?.DayWisecompletedOn.some(day => day.dayNumber === getDayfromStarted(currentch?.startDate)) ?
-                                    //     <></>
-                                    //     :
-                                    //     <div className="mark_today">
-                                    //         <p className="mark">Completed today's goals?</p>
-                                    //         <button onClick={() => {
-                                    //             dispatch(markDayAsCompleted(currentch?._id))
-                                    //         }}>Yeah, Done</button>
-                                    //     </div>
+                                    currentch?.challengeStatus.status === 0 ?
+
+                                        currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                            currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())).notes !== '' ?
+                                                <div className="add_done_for_today">
+                                                    <p> Task Marked & Notes Created for Today </p><img src={SmileIcon} alt="" />
+                                                </div> :
+                                                <div className="add_note_button">
+                                                    <p>
+                                                        Add a Note about Today
+                                                    </p>
+                                                    <button onClick={() => { setOPenNotePopup(true) }}> <img src={PenIcon} alt="" />Write here </button>
+                                                </div>
+
+
+                                            :
+
+                                            currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ?
+                                                <></> :
+
+                                                currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                                    currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())).notes !== '' ?
+                                                        <div className="add_done_for_today">
+                                                            <p> Task Marked & Notes Created for Today </p><img src={SmileIcon} alt="" />
+                                                        </div> :
+                                                        <div className="add_note_button">
+                                                            <p>
+                                                                Add a Note about Today
+                                                            </p>
+                                                            <button onClick={() => { setOPenNotePopup(true) }}> <img src={PenIcon} alt="" />Write here </button>
+                                                        </div>
+                                                    :
+                                                    <div className="mark_today">
+                                                        <p className="mark">Completed today's goals?</p>
+                                                        <button onClick={() => {
+                                                            dispatch(markDayAsCompleted(currentch?._id))
+                                                        }}> <img src={TickIcon} alt="" /> Yeah, Done</button>
+                                                    </div>
+
+                                        :
+                                        <div className={`message ${currentch?.challengeStatus.status === 1 ? "complted" : 'failed'}`}>
+                                            <p className="message_text">
+                                                {
+                                                    currentch?.challengeStatus.status === 1 ? "Completed This Challenge" :
+                                                        "You failed this Challenge"
+                                                }
+                                            </p>
+                                        </div>
+
                                 }
-                               
+
                             </div>
                         </div>
 
@@ -75,37 +130,57 @@ const ChallengeDashboard = () => {
                             <p className="map_heading">
                                 Here's your day wise task and their statuses
                             </p>
+                            {
+                                currentch?.challengeStatus.status === 0 ?
+                                    <div className="today_status">
+                                        <p className="status"> Status:
+                                            {
+                                                currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                                    " Completed" :
+                                                    currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date()))
+                                                        ? " Warm Up Day" :
 
-                            <div className="today_status">
-                                <p className="date">Current Date: {getDate(new Date())}</p>
-                                <p className="status"> Status:
-                                    {
+                                                        currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
+                                                            " Completed"
+                                                            :
+                                                            " Not Yet Completed"
+                                            }
 
-                                        currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ? " Completed" : currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date())) ? " Warm Up Day" : " Not yet Done"
-
-                                    }
-
-                                </p>
-                            </div>
-
-                            <div className="maps">
+                                        </p>
+                                        <p className="date" onClick={()=>{setShowDWC(!showDWC)}}>Show Detailed</p>
+                                    </div> :
+                                    <></>
+                            }
+                            <>
                                 {
-                                    Array.from({ length: currentch?.noOfdays }, (_, index) => {
-                                        const dayyy = currentch.includeStartDate === false ? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) : (
-                                            currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index)
+                                    showDWC === false ?
+                                        <div className="maps">
+                                            {
+                                                Array.from({ length: currentch?.noOfdays }, (_, index) => {
+                                                    const dayyy = currentch.includeStartDate === false ? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) : (
+                                                        currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index)
 
-                                        );
-                                        if (!dayyy) {
-                                            return <div key={index} className={`map`}>
-                                            </div>
-                                        } else {
-                                            return <div key={index} className={`map ${dayyy.status === true ? 'completed' : ''}`}>
-                                            </div>
-                                        }
-                                    })
+                                                    );
+                                                    if (!dayyy) {
+                                                        return <div key={index} className={`map`}>
+                                                        </div>
+                                                    } else {
+                                                        return <div key={index} className={`map ${dayyy.status === true ? 'completed' : ''}`}>
+                                                        </div>
+                                                    }
+                                                })
+                                            }
+                                        </div>
+                                        :
+                                        <div className="alldwcdata">
+                                            <DetailedDWC />
+
+
+                                        </div>
                                 }
-                            </div>
+                            </>
                         </div>
+
                     </div>
             }
             <Dialog onClose={() => { }} open={marking} PaperProps={{
@@ -116,6 +191,8 @@ const ChallengeDashboard = () => {
             }}>
                 <img src={LoadingAnimation} alt="" />
             </Dialog>
+
+            <AddNotePopup open={openNotePopup} challengeId={currentch?._id} closePopup={() => { setOPenNotePopup(false) }} minimizePopup={() => { }} />
 
         </>
     )
