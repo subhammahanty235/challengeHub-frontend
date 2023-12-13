@@ -12,13 +12,14 @@ import PenIcon from '../../assets/icons/pen-icon.svg'
 import TickIcon from '../../assets/icons/tick-icon.svg'
 import SmileIcon from '../../assets/icons/smile-icon.svg'
 // import DetailedProgressAccordian from '../../common/accordian/detailedProgressAccordian'
-import DetailedProgressesAccordian from '../../common/accordian/DetailedProgressesAccordian'
+// import DetailedProgressesAccordian from '../../common/accordian/DetailedProgressesAccordian'
 import DetailedDWC from './detailedDWC/DetailedDWC'
-
+import DetailedDWCIcon from '../../assets/icons/detailedDWC-icon.svg'
+import NormalDWCIcon from '../../assets/icons/normal-map-dwc.svg'
 const ChallengeDashboard = () => {
 
 
-    const { loading, marking, currentch } = useSelector((state) => state.challenge)
+    const { loading, marking, currentch, showdetailed } = useSelector((state) => state.challenge)
     const [openNotePopup, setOPenNotePopup] = useState(false)  //to open or close add note popup
     // const [minimizePopup, setMinimizePopup] = useState(false)  //to minimize the add note popup, instead of closing it
     const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
@@ -26,15 +27,15 @@ const ChallengeDashboard = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        // Update the timer every second
-        const intervalId = setInterval(() => {
-            setTimeRemaining(calculateTimeRemaining());
-        }, 1000);
+    // useEffect(() => {
+    //     // Update the timer every second
+    //     const intervalId = setInterval(() => {
+    //         setTimeRemaining(calculateTimeRemaining());
+    //     }, 1000);
 
-        // Clear the interval when the component is unmounted
-        return () => clearInterval(intervalId);
-    }, []);
+    //     // Clear the interval when the component is unmounted
+    //     return () => clearInterval(intervalId);
+    // }, []);
 
 
     const getDate = (pdate) => {
@@ -147,13 +148,43 @@ const ChallengeDashboard = () => {
                                             }
 
                                         </p>
-                                        <p className="date" onClick={()=>{setShowDWC(!showDWC)}}>Show Detailed</p>
+                                        {
+                                            showdetailed !== true ?
+                                                <p className="show_detailed" onClick={() => {
+                                                    dispatch({
+                                                        type: "SHOW_DETAILED_DWC"
+                                                    })
+                                                }}> <img src={DetailedDWCIcon} alt="" /> Show Detailed</p>
+                                                :
+                                                <p className="show_detailed" onClick={() => {
+                                                    dispatch({
+                                                        type: "HIDE_DETAILED_DWC"
+                                                    })
+                                                }}> <img src={NormalDWCIcon} alt="" />Hide Detailed</p>
+
+                                        }
                                     </div> :
-                                    <></>
+                                    <div className='detailed_DWC'>
+                                        {
+                                            showdetailed !== true ?
+                                                <p className="show_detailed" onClick={() => {
+                                                    dispatch({
+                                                        type: "SHOW_DETAILED_DWC"
+                                                    })
+                                                }}> <img src={DetailedDWCIcon} alt="" /> Show Detailed</p>
+                                                :
+                                                <p className="show_detailed" onClick={() => {
+                                                    dispatch({
+                                                        type: "HIDE_DETAILED_DWC"
+                                                    })
+                                                }}> <img src={NormalDWCIcon} alt="" />Hide Detailed</p>
+
+                                        }
+                                    </div>
                             }
                             <>
                                 {
-                                    showDWC === false ?
+                                    showdetailed !== true ?
                                         <div className="maps">
                                             {
                                                 Array.from({ length: currentch?.noOfdays }, (_, index) => {
@@ -173,7 +204,7 @@ const ChallengeDashboard = () => {
                                         </div>
                                         :
                                         <div className="alldwcdata">
-                                            <DetailedDWC />
+                                            <DetailedDWC challengeId={currentch._id} />
 
 
                                         </div>

@@ -121,6 +121,7 @@ export const challengeReducer = createReducer(initialState, {
     // temp
     SET_CURRENT_OPENED_CHALLENGE: (state, action) => {
         state.currentch = action.payload;
+        state.showdetailed = false;
     },
     OPEN_CREATE_CHALLENGE_FORM: (state) => {
         state.opencreateForm = true;
@@ -130,7 +131,32 @@ export const challengeReducer = createReducer(initialState, {
     SET_CURRENT_EXPANDED_CHALLENGE: (state, action) => {
         state.expandedch = action.payload;
         state.opencreateForm = false;
+    },
+
+    GET_DWC_DATA:(state , action) => {
+        state.dwcloading = true;
+        state.dwcData = null;
+    },
+    GET_DWC_DATA_SUCCESS: (state, action) => {
+        state.dwcloading = false;
+        state.dwcData = action.payload;
+
+    },
+    GET_DWC_DATA_FAILED: (state,action) =>{
+        state.dwcloading = false;
+        state.dwcData = null;
+        state.dwcerror = action.payload;
+    },
+
+    SHOW_DETAILED_DWC: (state) => {
+        state.showdetailed = true;
+    },
+    HIDE_DETAILED_DWC: (state) => {
+        state.showdetailed = false;
     }
+
+
+
 
 
 })

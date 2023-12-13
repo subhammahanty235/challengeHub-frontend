@@ -1,21 +1,23 @@
-.loading{
+.loading {
     display: flex;
     height: 100%;
     width: 100%;
     align-items: center;
     justify-content: center;
-    img{
+
+    img {
         width: 75px;
     }
-    
-    
+
+
 }
-.challenge_dashboard{
-    border-right:1px solid rgba(194, 224, 255, 0.08);
+
+.challenge_dashboard {
+    border-right: 1px solid rgba(194, 224, 255, 0.08);
     height: 100%;
     // background-color: #535bf2;
 
-    .challenge_datails{
+    .challenge_datails {
         margin-top: 30px;
         width: 90%;
         background-color: rgba(255, 255, 255, 0.87);
@@ -23,58 +25,60 @@
         border-radius: 20px;
         padding: 10px 20px;
         display: flex;
-        
+
         flex-direction: column;
         justify-content: space-between;
 
 
-        .challenge_name{
+        .challenge_name {
             display: flex;
             align-items: center;
             justify-content: space-between;
             text-align: left;
             color: #302e2e;
-            font-size:x-large;
+            font-size: x-large;
             font-weight: 600;
             margin: 0;
-           opacity: 0.9;
-           p{
-            margin-left: 5px;
-            font-weight: 600;
-            width: 55px;
-            margin-top: 3px;
-            font-size: x-small;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 2px solid #21BA45;
-            padding: 0px 9px;
-            padding-bottom: 2px;
-            text-align: center;
-            border-radius: 20px;
-            span{
-                margin-top: 2px;
-                height: 10px;
-                width: 10px;
-                border-radius: 50%;
-                // margin-bottom:2px;
-                background-color: #21BA45;
+            opacity: 0.9;
+
+            p {
+                margin-left: 5px;
+                font-weight: 600;
+                width: 55px;
+                margin-top: 3px;
+                font-size: x-small;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border: 2px solid #21BA45;
+                padding: 0px 9px;
+                padding-bottom: 2px;
+                text-align: center;
+                border-radius: 20px;
+
+                span {
+                    margin-top: 2px;
+                    height: 10px;
+                    width: 10px;
+                    border-radius: 50%;
+                    // margin-bottom:2px;
+                    background-color: #21BA45;
+                }
             }
-            
-           }
         }
-        .challenge_desc{
+
+        .challenge_desc {
             text-align: left;
-            color:#302e2e ;
+            color: #302e2e;
             opacity: 0.7;
             margin: 0;
             margin-top: 10px;
             // max-width: 300px;
             text-wrap: wrap;
         }
-       
 
-        .dates{
+
+        .dates {
             color: #302e2e;
             display: flex;
             padding: 0;
@@ -83,24 +87,25 @@
             justify-content: space-between;
         }
 
-        .currentPerformance{
+        .currentPerformance {
             text-align: left;
             color: #302e2e;
-            
-            p{
+
+            p {
                 margin: 0;
                 font-size: large;
                 font-weight: 500;
 
-                span{
+                span {
                     color: #535bf2;
                     font-weight: 700;
                 }
             }
         }
-        .score_warning{
-            
-            p{
+
+        .score_warning {
+
+            p {
                 color: grey;
                 font-size: smaller;
                 text-align: left;
@@ -108,7 +113,8 @@
                 padding: 0;
             }
         }
-        .mark_today{
+
+        .mark_today {
             border: 1px dashed #21BA45;
             // background-color: #535bf2;
             // opacity: 0.95;
@@ -120,7 +126,8 @@
             padding-right: 0;
             border-radius: 10px;
             margin-top: 25px;
-            p{
+
+            p {
                 color: #302e2e;
                 color: #21BA45;
                 font-size: large;
@@ -128,15 +135,17 @@
                 margin: 0;
 
             }
-            button{
+
+            button {
                 // border-radius:20px ;
                 border: 1px solid #fff;
                 text-align: center;
                 display: flex;
                 align-items: center;
                 gap: 5px;
+
                 // background-color: rgb(47, 44, 44);
-                img{
+                img {
                     height: 20px;
                     color: #fff;
                 }
@@ -144,7 +153,8 @@
 
 
         }
-        .add_done_for_today{
+
+        .add_done_for_today {
             color: #302e2e;
             // padding: 0px 10px;
             padding-right: 0;
@@ -155,21 +165,23 @@
             border-radius: 10px;
             gap: 10px;
             margin-top: 10px;
+
             // background-color: #fff;
             // background-color: #fff;
             // border-right: none;
-            p{
+            p {
                 font-size: large;
                 font-weight: 500;
                 margin: 0;
             }
 
-            img{
+            img {
                 height: 20px;
             }
 
         }
-        .add_note_button{
+
+        .add_note_button {
             display: flex;
             align-items: center;
             border: 2px solid red;
@@ -184,14 +196,16 @@
             background-color: #fff;
             gap: 30px;
             border-right: none;
-            p{
+
+            p {
                 margin: 0;
                 font-size: large;
                 font-weight: 500;
                 color: #1a1a1a;
                 color: #535bf2;
             }
-            button{
+
+            button {
                 text-align: center;
                 display: flex;
                 align-items: center;
@@ -200,13 +214,15 @@
                 // border-radius: 20px;
 
                 border: 1.3px solid #fff;
-                img{
+
+                img {
                     height: 20px;
                     color: #fff;
                 }
             }
         }
-        .message{
+
+        .message {
             color: #1a1a1a;
             text-align: left;
             border: 1px solid #302e2e;
@@ -216,73 +232,102 @@
             padding-right: 10%;
             border-radius: 10px;
             font-size: larger;
-            .message_text{
+
+            .message_text {
                 margin: 0;
                 margin: 15px 0px;
                 font-weight: 700;
 
             }
         }
-        .failed{
+
+        .failed {
             border: 1px dashed red;
             color: red;
             opacity: 0.8;
         }
-        .complted{
+
+        .complted {
             border: 1px dashed #535bf2;
             color: #535bf2;
         }
     }
 
-    .day_wise_map{
+    .day_wise_map {
         width: 93%;
         height: 100%;
-        
-        .map_heading{
+        .detailed_DWC{
+            width: fit-content;
+            margin-left: auto;
+        }
+
+        .map_heading {
             text-align: left;
             font-size: larger;
             font-weight: 600;
         }
-        .today_status{
+        
+        .show_detailed{
+            // background-color: #535bf2;
+            border: 1px solid #535bf2;
+            padding: 3px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: small;
+            font-weight: 500;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+
+            img{
+                height: 14px;
+            }
+        }
+
+        .today_status {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            p{
+
+            p {
                 margin: 0;
             }
         }
 
-        .maps{
+        .maps {
             margin-top: 20px;
             width: 100%;
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-       
 
-            .map{
+
+            .map {
                 height: 30px;
                 width: 30px;
                 background-color: #1a1a1a;
 
-                
+
             }
-            .completed{
+
+            .completed {
                 background-color: #535bf2;
             }
         }
 
-        .alldwcdata{
+        .alldwcdata {
             margin-top: 25px;
             width: 100%;
             // flex: 1
-            min-height:35%;
+            min-height: 35%;
+            max-height: 35%;
+            height: 35%;
             // background-color: #21BA45;
-           
-            
+
+
         }
 
 
     }
-    
+
 }

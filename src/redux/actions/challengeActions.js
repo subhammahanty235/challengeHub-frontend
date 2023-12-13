@@ -195,21 +195,51 @@ export const addNote = (data) => async (dispatch) => {
         )
         console.log(response.data)
 
-        if(response.data.success === true){
-           
+        if (response.data.success === true) {
+
             dispatch({
-                type:"ADD_NOTE_SUCCESS",
-                challengeID:data.challengeID,
-                dayWiseCompletedOn:response.data.data
-        })
-        }else{
+                type: "ADD_NOTE_SUCCESS",
+                challengeID: data.challengeID,
+                dayWiseCompletedOn: response.data.data
+            })
+        } else {
             dispatch({
-                type:"ADD_NOTE_FAILED"
+                type: "ADD_NOTE_FAILED"
             })
         }
 
     } catch (error) {
         console.log(error)
     }
+}
+
+export const getDWCdata = (challengeId) => async (dispatch) => {
+    try {
+        dispatch({ type: "GET_DWC_DATA" });
+
+        const response = await axios.post(`${import.meta.env.VITE_REACT_APP_BACKEND_URL}/api/challenge/getdwcdetailed/${challengeId}`, {}, 
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "token": localStorage.getItem("token")
+                }
+            }
+        )
+
+        if(response.data.success === true){
+            dispatch({
+                type:"GET_DWC_DATA_SUCCESS",
+                payload:response.data.dates
+            })
+        }
+        else{
+            dispatch({
+                type:"GET_DWC_DATA_FAILED",
+                payload:response.data.message
+            })
+        }
+} catch (error) {
+    console.log(error)
+}
 }
 
