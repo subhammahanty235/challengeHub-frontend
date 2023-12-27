@@ -14,14 +14,20 @@
 
 .challenge_dashboard {
     border-right: 1px solid rgba(194, 224, 255, 0.08);
-    height: 100%;
+    height: fit-content;
+    max-height: 100%;
+    overflow: auto;
     // background-color: #535bf2;
+
+    &::-webkit-scrollbar{
+        display: none;
+    }
 
     .challenge_datails {
         margin-top: 30px;
         width: 90%;
         background-color: rgba(255, 255, 255, 0.87);
-        max-height: 44%;
+        max-height: fit-content;
         border-radius: 20px;
         padding: 10px 20px;
         display: flex;
@@ -300,6 +306,12 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
+            height: 30%;
+            overflow: scroll;
+            margin-bottom: 20px;
+            &::-webkit-scrollbar{
+                display: none;
+            }
 
 
             .map {
@@ -321,8 +333,11 @@
             // flex: 1
             min-height: 35%;
             max-height: 35%;
+            // overflow: scroll;
             height: 35%;
             // background-color: #21BA45;
+
+            
 
 
         }
