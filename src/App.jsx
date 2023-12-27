@@ -4,7 +4,7 @@ import Login from './pages/login/Login'
 import CreateProfile from './pages/createProfile/CreateProfile'
 import { Routes, Route } from "react-router-dom";
 import CreateOrJoinPage from './pages/createorjoinPage/CreateorJoinPage';
-
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -48,6 +48,7 @@ function App() {
           <Route exact path='/profile' element={<ProfilePage/>} />
           <Route path='/' element={<Dashboard />} />
         </Routes>
+        <SpeedInsights />
      
     </>
   )
