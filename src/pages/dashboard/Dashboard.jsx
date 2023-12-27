@@ -6,6 +6,7 @@ import MyChallenges from '../../components/myChallenges/MyChallenges'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMyChallenges } from '../../redux/actions/challengeActions'
 import {NavLink} from 'react-router-dom'
+import { fetchUser } from '../../redux/actions/userActions'
 
 const Dashboard = () => {
     const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(getMyChallenges())
+        dispatch(fetchUser())
     }, [dispatch])
     return (
         <>
