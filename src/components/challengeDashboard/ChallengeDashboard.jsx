@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './challengeDashboard.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { calculateTimeRemaining } from '../../utils/timeHelperFunctions'
@@ -65,7 +65,7 @@ const ChallengeDashboard = () => {
 
                                 <div className="dates">
                                     <p className="start_date">Started on: {getDate(currentch?.startDate)}</p>
-                                    <p className="expectedEnd">Expected Deadline: {getDate(currentch?.expectedEnd)}</p>
+                                    <p className="expectedEnd">Endind On: {getDate(currentch?.expectedEnd)}</p>
                                 </div>
 
                                 <div className="currentPerformance">
@@ -149,6 +149,8 @@ const ChallengeDashboard = () => {
 
                                         </p>
                                         {
+                                            currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date()))?
+                                            <></>:
                                             showdetailed !== true ?
                                                 <p className="show_detailed" onClick={() => {
                                                     dispatch({
@@ -188,14 +190,15 @@ const ChallengeDashboard = () => {
                                         <div className="maps">
                                             {
                                                 Array.from({ length: currentch?.noOfdays }, (_, index) => {
-                                                    const dayyy = currentch.includeStartDate === false ? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index + 1) : (
+                                                    const dayyy = currentch.includeStartDate === false ? currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index) : (
                                                         currentch?.DayWisecompletedOn?.find((data) => data.dayNumber === index)
-
                                                     );
                                                     if (!dayyy) {
+                                                        
                                                         return <div key={index} className={`map`}>
                                                         </div>
                                                     } else {
+                                                        
                                                         return <div key={index} className={`map ${dayyy.status === true ? 'completed' : ''}`}>
                                                         </div>
                                                     }

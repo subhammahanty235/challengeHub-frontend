@@ -1,0 +1,299 @@
+.profile_page {
+    width: 100%;
+    height: calc(100vh - 52px);
+    // background-color: aliceblue;
+    display: flex;
+    overflow: hidden;
+    // border: 1px solid #fff;
+    // border-bottom: none;
+
+    .left_section {
+        width: 70vw;
+        height: 100%;
+        border-right: 1px solid rgba(194, 224, 255, 0.08);
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // background-color: aqua;
+        // border: 1px solid #fff;
+
+        .user_profile {
+
+            display: flex;
+            flex-direction: column;
+            padding-top: 30px;
+            width: 95%;
+
+
+            .avatar_name_email {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 30px;
+                border: 1px solid #646cff;
+                border-bottom: none;
+                padding: 20px;
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+
+                .logout_button{
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+
+                    button{
+                        padding: 5px 10px;
+                        // border: 1px solid #;
+                    }
+                }
+
+
+
+                .profile_avatar {
+                    height: 100px;
+                    width: 100px;
+                    border: 1px solid #fff;
+                    font-size: 3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 700;
+                    border-radius: 50%;
+                    // font-family: ;
+                }
+
+                .name_email {
+                    text-align: left;
+
+
+                    .name {
+                        font-size: 2rem;
+                        margin: 0;
+                        font-weight: 500;
+                    }
+
+                    .email {
+                        margin: 0;
+                    }
+                }
+            }
+
+            .challenge_insign_number {
+                // border: 1px solid #fff;
+                height: 50px;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                background-color: #646cff;
+                display: flex;
+                align-items: center;
+                padding: 0px 20px;
+                justify-content: space-between;
+                .inner_insights{
+                    font-size:medium;
+                    font-weight: 500;
+
+                    span{
+                        background-color: #fff;
+                        color: #535bf2;
+                        padding: 3px 13px;
+                        font-weight: 600;
+                        margin-left: 10px;
+                        border-radius: 10px;
+                    }
+                }
+            }
+
+            .profile_more_details {
+                text-align: left;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 10px 0px;
+
+                p {
+                    margin: 0;
+                }
+
+                .interests {
+                    margin-top: 20px;
+                    border: 1px solid #fff;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    padding: 0px 5px;
+                    display: flex;
+
+                    span {
+                        font-weight: 500;
+                        // border-right: 1px solid #fff;
+                    }
+
+                    // text-align: center;
+
+                    .interest_entry {
+                        height: 45px;
+                        width: 80%;
+                        background-color: aquamarine;
+                    }
+                }
+
+                
+            }
+            .soon_alert{
+                width: 90%;
+                border: 1px solid #fff;
+                padding: 30px;
+                margin-top: 50px;
+                border-radius: 20px;
+                font-size: larger;
+                font-weight: 700;
+            }
+
+
+            .challenges_canban {
+                width: 100%;
+                // border: 1px solid green;
+                height: calc(90vh - 300px);
+                // height: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .pending_challenges {
+                    width: 32%;
+                    border: 1px solid blue;
+                    height: 100%;
+                }
+
+                .heading_kanban_ch {
+                    margin: 0;
+                    text-align: left;
+                    font-size: large;
+                    font-weight: 500;
+                    // background-color: aqua;
+                    width: 100%;
+                    padding: 2px 4px;
+                    // border-bottom: 1px solid #fff;
+                }
+
+                .line_separator {
+                    border-left: 0.1px solid red;
+                    height: 80%;
+                }
+
+                .completed_challenges {
+                    width: 45%;
+                    // border: 1px solid pink;
+                    height: 100%;
+                }
+
+                .failed_challenges {
+                    width: 45%;
+                    // border: 1px solid cyan;
+                    height: 100%;
+                }
+            }
+
+        }
+    }
+
+    .right_section {
+        width: 30vw;
+        height: 100%;
+
+        padding: 0px 15px;
+
+        .heading_and_search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .heading {
+                font-size: 20px;
+                font-weight: 600;
+                // margin-left: 10%;
+                padding-bottom: 8px;
+                // border-bottom: 3px dashed #fff;
+                width: 70%;
+                text-align: left;
+            }
+
+            .searchButton {
+                background-color: #fff;
+                color: #535bf2;
+                border-radius: 10px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                padding-left: 3px;
+
+                img {
+                    height: 16px;
+                    // padding-right: 20px;
+                    text-align: center;
+                    // margin-right: 20px;
+                    background-color: #fff;
+                    width: 15px;
+                    padding: 6px 7px;
+
+                    border-radius: 50%;
+                    cursor: pointer;
+                    color: #535bf2;
+
+                }
+            }
+
+
+        }
+
+
+
+        .filterSection {
+            // padding:0px 10px;
+            width: 100%;
+            // height: 80px;
+            height: max-content;
+            display: flex;
+            // border: 1px solid #fff;
+            // border-radius: 10px;
+            justify-content: space-around;
+
+            // background-color: #646cff;
+
+            &.show_filter{
+                display: none;
+            }
+
+          
+
+            .completed_filtered_button ,.failed_filtered_button {
+                // background-color: aqua;
+                // border-right: 1px solid ;
+
+            }
+        }
+
+        .challenges_all {
+            margin-top: 20px;
+            height: calc(100% - 80px);
+            width: 100%;
+            // padding: 10px;
+            // background-color: #646cff;
+            // border-radius: 100px;
+            overflow: scroll;
+            display: flex;
+            flex-direction: column;
+            // align-items: center;
+            // justify-content: center;
+            gap: 10px;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+
+    }
+}

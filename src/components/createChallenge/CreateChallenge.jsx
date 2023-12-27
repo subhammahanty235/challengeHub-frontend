@@ -7,8 +7,10 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { styled, alpha } from '@mui/material/styles';
 import { ClickAwayListener } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createChallenge } from '../../redux/actions/challengeActions'
+import {JoinedPopup} from '../../common/dialog/Dialogs'
+import { useNavigate } from 'react-router-dom';
 const StyledMenu = styled((props) => (
     <Menu
         elevation={0}
@@ -50,7 +52,9 @@ const StyledMenu = styled((props) => (
     },
 }))
 const CreateChallenge = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const { challengeCreated } = useSelector((state) => state.challenge);
     const visibilities = ['Public', 'Private', 'Protected']
     const [anchorE1, setAnchorE1] = useState(null)
     const open = Boolean(anchorE1)
@@ -64,7 +68,7 @@ const CreateChallenge = () => {
     const handleSelect = (item) => {
 
         setSelectedVisibility(item)
-        setChallengeData({...challengeData, visibility:item})
+        setChallengeData({ ...challengeData, visibility: item })
         setAnchorE1(null)
     }
 
@@ -74,15 +78,25 @@ const CreateChallenge = () => {
 
     const clearChallengeHandler = () => {
         setincludeStartDate(false);
-        setChallengeData({name: '', description: '', noOfdays: '' ,visibility:'Public'})
+        setChallengeData({ name: '', description: '', noOfdays: '', visibility: 'Public' })
     }
 
 
-    const [challengeData, setChallengeData] = useState({ name: '', description: '', noOfdays: '' ,visibility: selectedVisibility  });
+    const [challengeData, setChallengeData] = useState({ name: '', description: '', noOfdays: '', visibility: selectedVisibility });
 
     const onChange = (e) => {
         setChallengeData({ ...challengeData, [e.target.name]: e.target.value })
     }
+
+
+
+    const navigatetoHomepage = () => {
+        dispatch({
+            type: "CLEAR_CREATE_CHALLENGE_TEMP"
+        })
+        navigate('/')
+    }
+
 
 
 
@@ -147,7 +161,7 @@ const CreateChallenge = () => {
                         </ClickAwayListener>
                     </div>
                 </div>
-                
+
 
 
             </div>
@@ -155,30 +169,31 @@ const CreateChallenge = () => {
                 <p>Please fill details carefully to help others understand your challenge easily and As you are creating this challenge you will be auto enrolled.  </p>
             </div>
             <div className="startfromtoday">
-                    <Checkbox
-                        style={{color:"#fff"}}
-                        checked={includeStartDate}
-                        onChange={(e)=>{
-                            setincludeStartDate(e.target.checked)
-                            console.log("Clicked")
-                        }}
-                    />
-                    <p>Start From Today, Only applicable to you (if selected) and users who will select it.</p>
-                </div>
+                <Checkbox
+                    style={{ color: "#fff" }}
+                    checked={includeStartDate}
+                    onChange={(e) => {
+                        setincludeStartDate(e.target.checked)
+                        console.log("Clicked")
+                    }}
+                />
+                <p>Start From Today, Only applicable to you (if selected) and users who will select it.</p>
+            </div>
 
-                
+
 
             <div className="buttons">
 
-                <button className="clear" onClick={()=>{
+                <button className="clear" onClick={() => {
                     clearChallengeHandler()
                 }}> Delete</button>
                 <button className="save" onClick={() => {
                     // console.log(challengeData)
-                    dispatch(createChallenge(challengeData , includeStartDate))
+                    dispatch(createChallenge(challengeData, includeStartDate))
                 }}>Save</button>
                 {/* <img src={Delete} alt="" /> */}
             </div>
+            <JoinedPopup open={challengeCreated} navigate={navigatetoHomepage} /> 
         </div>
     )
 }

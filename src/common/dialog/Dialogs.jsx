@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNote, joinChallenge } from '../../redux/actions/challengeActions'
 import CloseIcon from '../../assets/icons/close-icon.svg'
+import LogoutIcon from '../../assets/icons/logout-icon.svg'
+import { useNavigate } from 'react-router-dom';
+
 
 const JoinPopup = ({ open, setOpen, challenge }) => {
 
@@ -113,4 +116,30 @@ const AddNotePopup = ({ open, challengeId, closePopup, minimizePopup }) => {
     )
 }
 
-export { JoinPopup, JoinedPopup, AddNotePopup }
+
+const LogoutPopup = ({open , closePopup}) => {
+    const navigate = useNavigate()
+
+    const logout = () =>{
+        localStorage.removeItem("token");
+        navigate('/login')
+    }
+
+    return (
+        <Dialog open={open}>
+                <div className="logout_popup">
+                    <img src={LogoutIcon} alt="" />
+                    <div className="content">
+                        <h3>Logout</h3>
+                        <p>Are you sure you want to logout?</p>
+                    </div>
+                    <div className="buttons">
+                        <button onClick={closePopup}>No</button>
+                        <button className='yes_resp' onClick={logout}>Yes</button>
+                    </div>
+                </div>
+        </Dialog>
+    )
+}
+
+export { JoinPopup, JoinedPopup, AddNotePopup , LogoutPopup }

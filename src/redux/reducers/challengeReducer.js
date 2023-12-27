@@ -9,7 +9,7 @@ export const challengeReducer = createReducer(initialState, {
         state.loading = false;
         state.challengeCreated = true;
     },
-    CREATE_NEW_CHALLENGE_FAILED: (state, action) => {
+    CREATE_NEW_CHALLENGE_FAILED: (state, action) => {    
         state.loading = false;
         state.challengeCreated = false;
         state.error = action.payload;
@@ -82,6 +82,7 @@ export const challengeReducer = createReducer(initialState, {
     },
 
     CLEAR_CREATE_CHALLENGE_TEMP: (state) => {
+        state.challengeCreated = false;
         state.joined = null;
         state.error = null;
         state.expandedch = {}

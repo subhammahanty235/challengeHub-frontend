@@ -20,14 +20,12 @@ const Dashboard = () => {
             {
                 mychallenges?.length !== 0 ?
                     <div className="dashboard">
-
                         <div className="section1">
                             <ChallengeDashboard />
                         </div>
                         <div className="section2">
                             <MyChallenges />
                         </div>
-
                     </div>
                     :
                     <div className="nochallenges">

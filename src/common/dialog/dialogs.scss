@@ -131,3 +131,44 @@
         }
     }
 }
+
+.logout_popup{
+    background-color: #fff;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img{
+        width: 60px;
+        height: 60px;
+    }
+    .content{
+        text-align: center;
+        h3{
+                // background-color: #646cff;
+        }
+
+        p{
+            // margin: 0;
+            font-weight: 500;
+        }
+    }
+
+    .buttons{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button{
+            width: 47%;
+            padding: 7px 10px;
+            background-color: #242424;
+
+           
+        }
+        .yes_resp{
+            background-color: #646cff;
+        }
+    }
+}

@@ -3,24 +3,39 @@ import './login.scss'
 import { getOtp, verifyOtp } from '../../redux/actions/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import OtpInput from 'react-otp-input';
-// import LoginScreenIllustration from '../../assets/images/login-illustration.svg'
+import { useSnackbar, SnackbarProvider } from 'notistack';
 import { useNavigate } from 'react-router-dom';
+import AlertRibbon from '../../common/alert/Alert'
+import useOtpResendTimer from '../../utils/useOtpResendTimer';
 const Login = () => {
+  
   const dispatch = useDispatch();
-  const { otpsent, verifiedotp, user  , authenticated} = useSelector((state) => state.auth)
+  const [showAlert , setShowAlert] = useState({flag:false , message:"" , type:""});
+  const { loading , otpsent, verifiedotp, user, authenticated, error } = useSelector((state) => state.auth)
   const [email, setemail] = useState("")
   const [otp, setOtp] = useState()
   const navigate = useNavigate()
 
-  useEffect(()=>{
-    if(verifiedotp === true && authenticated === true){
-      if(user.profileCreated === false){
+  const {seconds , startTimer , active , resetTimer , timerFinished} = useOtpResendTimer(120);
+
+  useEffect(() => {
+    if (verifiedotp === true && authenticated === true) {
+      if (user.profileCreated === false) {
         navigate('/createprofile')
-      }else{
+      } else {
         navigate('/')
       }
     }
-  },[authenticated ,user , verifiedotp ])
+  }, [authenticated, user, verifiedotp])
+
+  // const [open, setOpen] = useState(true);
+
+  // const handleClickVariant = (message, variant) => {
+  //   // variant could be success, error, warning, info, or default
+  //   console.log("calling")
+  //   enqueueSnackbar(message, { variant });
+  // };
+
 
 
 
@@ -37,6 +52,7 @@ const Login = () => {
         otpsent === true && verifiedotp === false || verifiedotp === null ?
           <>
             <div className="login_page_form_components">
+            <AlertRibbon open={showAlert.flag} message={showAlert.message} severity={showAlert.type} setOpen={setShowAlert}/>
               <p className="login_page_header">Enter The OTP</p>
               <div className="main_login_form">
                 {/* <input type="text" className="email_input" /> */}
@@ -51,30 +67,65 @@ const Login = () => {
                   renderInput={(props) => <input {...props} />}
                 />
                 <div className="resend_and_timer">
-                  <p className="resend">resend</p>
-                  <p className="timer">120</p>
+                  {
+                    timerFinished ?
+                    <p className="resend" onClick={()=>{dispatch(getOtp(email))}}>Resend</p>:
+                    <p className="timer">Resend in {seconds}s</p>
+                  }
                 </div>
-                <button className='get_otp_button' onClick={()=>{dispatch(verifyOtp(email , otp))}}>Verify OTP</button>
+                <button className='get_otp_button' onClick={() => { 
+                  if(error !== '' || error !== undefined){
+                    setShowAlert({
+                      flag:true,
+                      message:error,
+                      type:"error"
+                    })
+                  }
+                  dispatch(verifyOtp(email, otp)) 
+                  }}>Verify OTP</button>
               </div>
             </div>
           </>
           :
           <>
             <div className="login_page_form_components">
+              <AlertRibbon open={showAlert.flag} message={showAlert.message} severity={showAlert.type} setOpen={setShowAlert}/>
+
               <p className="login_page_header">Are U Ready? <br /><span>TO CHALLENGE YOURSELF</span></p>
               {/* <p className="login_page_subheader">A LIST OF CHALLENGES FOR YOU</p> */}
               <div className="main_login_form">
 
-                <input placeholder='Enter email' type="text" className="email_input" value={email} onChange={(e)=>{setemail(e.target.value)}} />
+                <input placeholder='Enter email' type="text" className="email_input" value={email} onChange={(e) => { setemail(e.target.value) }} />
 
-                <button className='get_otp_button' onClick={()=>{dispatch(getOtp(email))}}>Get OTP</button>
+                <button className='get_otp_button'
+                disabled={loading===true?true:false}
+                onClick={() => {
+                  if (email.length <= 4) {
+                    setShowAlert({
+                      flag:true,
+                      message:"Please provide a valid emailId",
+                      type:"error"
+                    })
+                    // handleClickVariant("Please provide a valid emailId", "warning")
+                  } else {
+                    dispatch(getOtp(email))
+                    startTimer();
+
+                  }
+
+                }}>{loading === true ? "Generating OTP":"Get OTP"}</button>
               </div>
+
             </div>
+
           </>
 
 
 
       }
+
+
+
 
 
 
