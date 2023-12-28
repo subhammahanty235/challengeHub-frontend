@@ -65,7 +65,7 @@ const ChallengeDashboard = () => {
 
                                 <div className="dates">
                                     <p className="start_date">Started on: {getDate(currentch?.startDate)}</p>
-                                    <p className="expectedEnd">Endind On: {getDate(currentch?.expectedEnd)}</p>
+                                    <p className="expectedEnd">Deadline: {getDate(currentch?.expectedEnd)}</p>
                                 </div>
 
                                 <div className="currentPerformance">

@@ -43,6 +43,7 @@ const ProfilePage = () => {
     }
 
     useEffect(()=>{
+        
     setCounts({
            completed: mychallenges?.filter((chal) => chal?.challengeStatus?.status === 1)?.length,
            failed: mychallenges?.filter((chal) => chal?.challengeStatus?.status === 2)?.length,
