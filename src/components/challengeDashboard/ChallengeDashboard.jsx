@@ -16,6 +16,7 @@ import SmileIcon from '../../assets/icons/smile-icon.svg'
 import DetailedDWC from './detailedDWC/DetailedDWC'
 import DetailedDWCIcon from '../../assets/icons/detailedDWC-icon.svg'
 import NormalDWCIcon from '../../assets/icons/normal-map-dwc.svg'
+import { getDayfromStarted } from '../../utils/getDayfromStarted'
 const ChallengeDashboard = () => {
 
 
@@ -57,24 +58,31 @@ const ChallengeDashboard = () => {
                     <div className="challenge_dashboard">
                         <div className="challenge_datails">
                             <div className="name_desc">
-                                <p className="challenge_name">{currentch?.name} <p><span style={{ backgroundColor: currentch?.challengeStatus.status === 0 ? "#21BA45" : currentch?.challengeStatus.status === 1 ? "#535bf2" : "red" }}></span>{currentch?.challengeStatus.status === 0 ? "Ongoing" : currentch?.challengeStatus.status === 1 ? "Completed" : "Failed"}</p></p>
+                                <p className="challenge_name">{currentch?.name}  <p><span style={{ backgroundColor: currentch?.challengeStatus.status === 0 ? "#21BA45" : currentch?.challengeStatus.status === 1 ? "#535bf2" : "red" }}></span>{currentch?.challengeStatus.status === 0 ? "Ongoing" : currentch?.challengeStatus.status === 1 ? "Completed" : "Failed"}</p></p>
                                 <p className="challenge_desc">{currentch?.description}</p>
                             </div>
                             <div className="other_details">
 
 
                                 <div className="dates">
-                                    <p className="start_date">Started on: {getDate(currentch?.startDate)}</p>
+                                    <p className="start_date">{currentch?.datewise === true && getDayfromStarted(currentch?.fixstartDate) < 0?"Starting":"Started"} on: {getDate(currentch?.startDate)}</p>
                                     <p className="expectedEnd">Deadline: {getDate(currentch?.expectedEnd)}</p>
                                 </div>
-
-                                <div className="currentPerformance">
+                                {
+                                    currentch?.datewise === true && getDayfromStarted(currentch?.fixstartDate) < 0?
+                                    <></>:
+                                    <div className="currentPerformance">
                                     <p>Current Performance Score: <span>{currentch?.performanceScore}</span> </p>
                                 </div>
+                                }
+                               
 
                                 {
                                     currentch?.challengeStatus.status === 0 ?
-
+                                        currentch?.datewise === true && getDayfromStarted(currentch?.fixstartDate) < 0?
+                                        <p className="notyet_started">Exciting news! You've enrolled in an upcoming challenge. Though it hasn't started yet, use this time to prepare mentally and gear up for success. Get ready to embark on a rewarding journey of growth when the challenge begins!</p>
+                                        :
+                                        
                                         currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
                                             currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())).notes !== '' ?
                                                 <div className="add_done_for_today">
@@ -136,6 +144,8 @@ const ChallengeDashboard = () => {
                                     <div className="today_status">
                                         <p className="status"> Status:
                                             {
+                                                currentch?.datewise === true && getDayfromStarted(currentch?.fixstartDate) < 0?
+                                                " Upcoming Challenge":
                                                 currentch?.includeStartDate === true && currentch?.DayWisecompletedOn?.find((data) => getDate(data.date) === getDate(new Date())) ?
                                                     " Completed" :
                                                     currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date()))
@@ -149,7 +159,7 @@ const ChallengeDashboard = () => {
 
                                         </p>
                                         {
-                                            currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date()))?
+                                            (currentch?.includeStartDate === false && getDate(currentch.startDate) === (getDate(new Date()))) || (currentch?.datewise === true && getDayfromStarted(currentch?.fixstartDate) < 0)?
                                             <></>:
                                             showdetailed !== true ?
                                                 <p className="show_detailed" onClick={() => {

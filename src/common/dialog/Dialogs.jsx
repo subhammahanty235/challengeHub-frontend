@@ -31,7 +31,10 @@ const JoinPopup = ({ open, setOpen, challenge }) => {
                     {/* <p className='d_text_1'>?</p> */}
                     <p className='d_text_2'>Once joined, there's only two Options <br />Completed or Failed</p>
                     <p className='d_text_3'>Wanna Improve yourself?</p>
-                    <div className="startfromtoday">
+                    {
+                        challenge?.datewise === true?
+                        <></>:
+                        <div className="startfromtoday">
 
                         <Checkbox
                             checked={isd}
@@ -41,6 +44,9 @@ const JoinPopup = ({ open, setOpen, challenge }) => {
                         />
                         <p>Start From Today.</p>
                     </div>
+                    
+                    }
+                   
                     <button className="btn_1" onClick={join}>Join</button>
                 </div>
             </ClickAwayListener>
