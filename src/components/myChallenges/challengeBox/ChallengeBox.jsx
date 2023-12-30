@@ -17,7 +17,7 @@ const ChallengeBox = ({ item }) => {
       </p>
       <p className="box_desc">{item?.description.length >= 45 ? item?.description.substr(0, 45) : item?.description}...</p>
       <div className="startdate_tenure">
-        <p className="startDate">Start: <span>{dateFormattingHelper(currentch?.startDate)}</span></p>
+        <p className="startDate">Start: <span>{dateFormattingHelper(item?.startDate)}</span></p>
         <p className="tenure">Duration: {item?.noOfdays}Days</p>
 
       </div>
