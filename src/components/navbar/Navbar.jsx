@@ -12,7 +12,7 @@ const Navbar = () => {
         if (name?.split(' ')[1] !== undefined) {
             n2 = name?.split(' ')[1][0];
         }
-        return `${n1}${n2 === '' ? '' : n2}`
+        return `${n1}${n2 === '' || n2 === undefined ? '' : n2}`
 
 
         // return `${name?.split(' ')[0][0]}${name?.split(' ')[1][0]}`
@@ -29,7 +29,7 @@ const Navbar = () => {
                 <NavLink to={'/'}><button className={`menu_button ${location.pathname === '/' ? 'active' : ''}`}>Dashboard</button></NavLink>
                 {/* <NavLink to={'/topChallenges'}><button className="menu_button">Top Challenges</button></NavLink> */}
                 <NavLink to={'/profile'}><button className="menu_button">Profile</button></NavLink>
-                <span className="avatar">{stringAvatar(user?.name)}</span>
+                <span className="avatar">{stringAvatar(user?.name) === undefined? "":stringAvatar(user?.name)}</span>
                 {/* <Avatar {...stringAvatar(user?.name)} /> */}
                 {/* <img src="https://lh3.googleusercontent.com/a/ACg8ocJPYPJZNshOCFSSyOdIRN3UwPTYqF_8Vzf9zHnTsVfAxQ=s96-c" alt="" /> */}
             </div>

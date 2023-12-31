@@ -35,7 +35,7 @@ const ProfilePage = () => {
         if (name?.split(' ')[1] !== undefined) {
             n2 = name?.split(' ')[1][0];
         }
-        return `${n1}${n2 === '' ? '' : n2}`
+        return `${n1}${n2 === '' || n2 === undefined ? '' : n2}`
 
 
         // return `${name?.split(' ')[0][0]}${name?.split(' ')[1][0]}`
