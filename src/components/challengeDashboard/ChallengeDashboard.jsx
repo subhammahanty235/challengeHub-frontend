@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './challengeDashboard.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { calculateTimeRemaining } from '../../utils/timeHelperFunctions'
@@ -17,6 +17,8 @@ import DetailedDWC from './detailedDWC/DetailedDWC'
 import DetailedDWCIcon from '../../assets/icons/detailedDWC-icon.svg'
 import NormalDWCIcon from '../../assets/icons/normal-map-dwc.svg'
 import { getDayfromStarted } from '../../utils/getDayfromStarted'
+import { useNavigate } from 'react-router-dom'
+
 const ChallengeDashboard = () => {
 
 
@@ -25,6 +27,7 @@ const ChallengeDashboard = () => {
     // const [minimizePopup, setMinimizePopup] = useState(false)  //to minimize the add note popup, instead of closing it
     const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
     const [showDWC, setShowDWC] = useState(false);
+    const navigate = useNavigate()
 
     const dispatch = useDispatch();
 
@@ -50,6 +53,12 @@ const ChallengeDashboard = () => {
         let currentDate = `${day}-${month}-${year}`;
         return currentDate;
     }
+
+    // useEffect(()=>{
+    //     if(!localStorage.getItem("token")){
+    //         navigate('/login')
+    //     }
+    // },[localStorage.getItem("token")])
 
     return (
         <>

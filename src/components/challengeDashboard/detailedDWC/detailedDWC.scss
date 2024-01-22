@@ -67,6 +67,7 @@
                     text-align: left;
                     font-weight: 500;
                     padding-top: 10px;
+                    background-color: #ef6464;
 
                     p{
                         // padding-left: 20px;
@@ -78,7 +79,14 @@
                         color: #e4d9d9;
                        
                     }
+
+                    .note{
+                        overflow: scroll;
+                        height: 50px;
+                    }
                 }
+
+                
 
             }
         }

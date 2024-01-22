@@ -128,6 +128,7 @@ const LogoutPopup = ({open , closePopup}) => {
 
     const logout = () =>{
         localStorage.removeItem("token");
+        // navigate('/')
         navigate('/login')
     }
 

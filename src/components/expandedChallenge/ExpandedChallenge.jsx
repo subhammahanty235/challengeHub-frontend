@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { JoinPopup, JoinedPopup } from '../../common/dialog/Dialogs'; 
 import { dateFormattingHelper } from '../../utils/dateformatter'
 import { useNavigate } from 'react-router-dom';
+import { getDayfromStarted } from '../../utils/getDayfromStarted';
 const ExpandedChallenge = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch()
@@ -34,7 +35,17 @@ const ExpandedChallenge = () => {
       <div className="name_description_box">
         <div className="name_joinNow">
           <p className="name">{expandedch?.name}</p>
-          <button className='join_btn' onClick={() => { setopenJoinPopup(true) }}>Join Challenge</button>
+
+          {
+            expandedch?.datewise == true ?
+                    getDayfromStarted(expandedch?.fixstartDate) > expandedch?.noOfdays?
+                          <button className='join_btn' disabled={true}>Challenge Expired</button>:
+                          <button className='join_btn'  onClick={() => { setopenJoinPopup(true) }}>Join Challenge</button>
+            :
+            <button className='join_btn'  onClick={() => { setopenJoinPopup(true) }}>Join Challenge</button>
+
+
+          }
 
         </div>
         <p className="description">{expandedch?.description}</p>
@@ -62,6 +73,17 @@ const ExpandedChallenge = () => {
             </TableHead> */}
           </Table>
         </TableContainer>
+        {
+            expandedch?.datewise == true ?
+                    getDayfromStarted(expandedch?.fixstartDate) > expandedch?.noOfdays?
+                    <p className="exclusivech">*Exclusive Challenges are available for a limited duration only. Don't worry; there are more challenges available. Please take a look at those.</p>
+                          :
+                          <></>
+            :
+            <></>
+
+
+          }
       </div>
 
       {/* Popup or Dialog box to confirm user */}
