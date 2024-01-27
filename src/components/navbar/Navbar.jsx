@@ -3,9 +3,10 @@ import './navbar.scss'
 import { NavLink, useLocation } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import { useSelector } from 'react-redux';
+import LoadingAnimation from '../../assets/images/loading.svg'
 const Navbar = () => {
     const location = useLocation()
-    const { user } = useSelector((state) => state.user)
+    const {fuserloading, user } = useSelector((state) => state.user)
     function stringAvatar(name) {
         let n1 = name?.split(' ')[0][0]
         let n2 = ''
@@ -29,7 +30,13 @@ const Navbar = () => {
                 <NavLink to={'/'}><button className={`menu_button ${location.pathname === '/' ? 'active' : ''}`}>Dashboard</button></NavLink>
                 {/* <NavLink to={'/topChallenges'}><button className="menu_button">Top Challenges</button></NavLink> */}
                 <NavLink to={'/profile'}><button className="menu_button">Profile</button></NavLink>
-                <span className="avatar">{stringAvatar(user?.name) === undefined? "":stringAvatar(user?.name)}</span>
+                {
+                    fuserloading?
+                    <span className="avatar"></span> :
+                    <span className="avatar">{stringAvatar(user?.name) === undefined? "":stringAvatar(user?.name)}</span>
+
+
+                }
                 {/* <Avatar {...stringAvatar(user?.name)} /> */}
                 {/* <img src="https://lh3.googleusercontent.com/a/ACg8ocJPYPJZNshOCFSSyOdIRN3UwPTYqF_8Vzf9zHnTsVfAxQ=s96-c" alt="" /> */}
             </div>

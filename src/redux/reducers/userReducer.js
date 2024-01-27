@@ -3,15 +3,15 @@ const initialState = {};
 
 export const userReducer = createReducer(initialState , {
     FETCH_USER_DATA: (state)=>{
-        state.loading = true;
+        state.fuserloading = true;
     },
     FETCH_USER_DATA_SUCCESS: (state, action)=>{
-        state.loading = false;
+        state.fuserloading = false;
         state.user = action.payload.user;
         state.success = true;
     },
     FETCH_USER_DATA_FAILED: (state)=>{
-        state.loading = false;
+        state.fuserloading = false;
         state.success = false;
         state.error = action.payload
     },
