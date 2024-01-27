@@ -61,17 +61,23 @@
 
             .expanded_info_body{
                 width: 100%;
+               
                 
                 .failed{
+
+                    
                     // background-color: #37bd56;
                     text-align: left;
                     font-weight: 500;
                     padding-top: 10px;
-                    background-color: #ef6464;
 
+                    // background-color: #ef6464;
                     p{
                         // padding-left: 20px;
                         font-size: 14px;
+                     
+                        
+                       
                     }
                     ul{
                         margin: 0;
@@ -80,10 +86,6 @@
                        
                     }
 
-                    .note{
-                        overflow: scroll;
-                        height: 50px;
-                    }
                 }
 
                 

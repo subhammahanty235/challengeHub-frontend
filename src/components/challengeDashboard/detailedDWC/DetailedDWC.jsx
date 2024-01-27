@@ -47,7 +47,7 @@ const DetailedDWC = ({ challengeId }) => {
                   </>
                   :
                   detailedDWC?.notes !== "" && detailedDWC?.notes !== null ?
-                    <p className="note">{detailedDWC?.notes}</p>
+                    <p>{detailedDWC?.notes}</p>
                     :
                     <>
                       <p>Why you should write Notes?</p>
