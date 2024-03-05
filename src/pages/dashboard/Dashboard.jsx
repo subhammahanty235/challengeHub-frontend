@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import './dashboard.scss'
 import Navbar from '../../components/navbar/Navbar'
 import ChallengeDashboard from '../../components/challengeDashboard/ChallengeDashboard'
